@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TicTacBackend.Infra.Helpers.Attribute;
 
-namespace TicTacBackend.Infra.Helpers.Exception.Filter
+namespace TicTacBackend.Infra.Helpers.Exceptions.Filter
 {
     public class ExceptionApiFilter : ExceptionFilterAttribute
     {

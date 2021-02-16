@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
-using TicTacBackend.Infra.Helpers.Exception.Filter;
+using TicTacBackend.Infra.Helpers.Exceptions.Filter;
 using TicTacBackend.Infra.IoC;
 
 namespace TicTacBackend

@@ -14,7 +14,7 @@ namespace TicTacBackend.Infra.Helpers.Validation
         /// <typeparam name="TException">O Tipo da exceção a ser gerada</typeparam>
         /// <param name="condition">A condição a ser testada</param>
         /// <param name="message">A mensagem a ser passada para a exceção</param>
-        public static void IsFalse<TException>(bool condition, string message) where TException : Exception
+        public static void IsFalse<TException>(bool condition, string message) where TException : System.Exception
         {
             if (!condition)
             {
@@ -28,7 +28,7 @@ namespace TicTacBackend.Infra.Helpers.Validation
         /// <typeparam name="TException">O Tipo da exceção a ser gerada</typeparam>
         /// <param name="condition">A condição a ser testada</param>
         /// <param name="message">A mensagem a ser passada para a exceção</param>
-        public static void IsTrue<TException>(bool condition, string message) where TException : Exception
+        public static void IsTrue<TException>(bool condition, string message) where TException : System.Exception
         {
             if (condition)
             {

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TicTacBackend.Infra.Helpers.Attribute;
 
-namespace TicTacBackend.Infra.Helpers.Exception
+namespace TicTacBackend.Infra.Helpers.Exceptions
 {
     [HttpStatusCode(HttpStatusCode.NotFound)]
     public class RecursoNaoEncontradoException : ValidacaoException

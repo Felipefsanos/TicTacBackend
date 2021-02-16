@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using TicTacBackend.Infra.Helpers.Attribute;
 
-namespace TicTacBackend.Infra.Helpers.Exception
+namespace TicTacBackend.Infra.Helpers.Exceptions
 {
     [HttpStatusCode(HttpStatusCode.Conflict)]
     public class RecursoExistenteException : ValidacaoException
