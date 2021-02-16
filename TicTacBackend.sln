@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacBackend", "TicTacBackend\TicTacBackend.csproj", "{B2FAF369-01E0-408D-A2F4-3EE3EE3D2704}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacBackend.Application", "TicTacBackend.Application\TicTacBackend.Application.csproj", "{CE51F25D-C03D-44A2-99AD-301E555AB545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacBackend.Domain", "TicTacBackend.Domain\TicTacBackend.Domain.csproj", "{4250370E-1252-4947-958D-7FEFF97B2770}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacBackend.Infra.Data", "TicTacBackend.Infra.Data\TicTacBackend.Infra.Data.csproj", "{754930BB-6BD2-4C11-9820-BE1F72F71BC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacBackend.Infra.IoC", "TicTacBackend.Infra.IoC\TicTacBackend.Infra.IoC.csproj", "{4976556A-CE0E-4D81-82EB-CA9F08FD8064}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacBackend.Infra.Helpers", "TicTacBackend.Infra.Helpers\TicTacBackend.Infra.Helpers.csproj", "{71841F25-F6D7-4F46-946F-46635E737C71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2FAF369-01E0-408D-A2F4-3EE3EE3D2704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2FAF369-01E0-408D-A2F4-3EE3EE3D2704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2FAF369-01E0-408D-A2F4-3EE3EE3D2704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2FAF369-01E0-408D-A2F4-3EE3EE3D2704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE51F25D-C03D-44A2-99AD-301E555AB545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE51F25D-C03D-44A2-99AD-301E555AB545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE51F25D-C03D-44A2-99AD-301E555AB545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE51F25D-C03D-44A2-99AD-301E555AB545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4250370E-1252-4947-958D-7FEFF97B2770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4250370E-1252-4947-958D-7FEFF97B2770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4250370E-1252-4947-958D-7FEFF97B2770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4250370E-1252-4947-958D-7FEFF97B2770}.Release|Any CPU.Build.0 = Release|Any CPU
+		{754930BB-6BD2-4C11-9820-BE1F72F71BC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{754930BB-6BD2-4C11-9820-BE1F72F71BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{754930BB-6BD2-4C11-9820-BE1F72F71BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{754930BB-6BD2-4C11-9820-BE1F72F71BC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4976556A-CE0E-4D81-82EB-CA9F08FD8064}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4976556A-CE0E-4D81-82EB-CA9F08FD8064}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4976556A-CE0E-4D81-82EB-CA9F08FD8064}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4976556A-CE0E-4D81-82EB-CA9F08FD8064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71841F25-F6D7-4F46-946F-46635E737C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71841F25-F6D7-4F46-946F-46635E737C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71841F25-F6D7-4F46-946F-46635E737C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71841F25-F6D7-4F46-946F-46635E737C71}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {103CF972-01FD-4BE3-997E-DE6922D0DFF6}
+	EndGlobalSection
+EndGlobal

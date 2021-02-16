@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TicTacBackend.Application\TicTacBackend.Application.csproj" />
+    <ProjectReference Include="..\TicTacBackend.Domain\TicTacBackend.Domain.csproj" />
+    <ProjectReference Include="..\TicTacBackend.Infra.Data\TicTacBackend.Infra.Data.csproj" />
+    <ProjectReference Include="..\TicTacBackend.Infra.Helpers\TicTacBackend.Infra.Helpers.csproj" />
+  </ItemGroup>
+
+</Project>
