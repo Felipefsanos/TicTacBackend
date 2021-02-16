@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using TicTacBackend.Infra.Helpers.Exception.Filter;
 using TicTacBackend.Infra.IoC;
 
 namespace TicTacBackend
@@ -27,7 +28,7 @@ namespace TicTacBackend
             services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
 
             //TODO: Verificar Filtros
-            services.AddControllers();
+            services.AddControllers(opt => opt.Filters.Add(typeof(ExceptionApiFilter))).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
             services.AddCors(options =>
             {
