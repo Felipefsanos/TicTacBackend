@@ -27,9 +27,6 @@ namespace TicTacBackend
 
             services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
 
-            //TODO: Verificar Filtros
-            services.AddControllers(opt => opt.Filters.Add(typeof(ExceptionApiFilter))).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
-
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -78,6 +75,8 @@ namespace TicTacBackend
                     }
                 });
             });
+
+            services.AddControllers(opt => opt.Filters.Add(typeof(ExceptionApiFilter))).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

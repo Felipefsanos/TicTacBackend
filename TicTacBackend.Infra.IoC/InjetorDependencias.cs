@@ -27,12 +27,10 @@ namespace TicTacBackend.Infra.IoC
 
         private static void ConfigurarServices(IServiceCollection services)
         {
-            throw new NotImplementedException();
         }
 
         private static void ConfigurarAppServices(IServiceCollection services)
         {
-            throw new NotImplementedException();
         }
 
         private static void ConfigurarDatabases(IServiceCollection services, IConfiguration configuration)
