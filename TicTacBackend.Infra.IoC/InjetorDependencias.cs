@@ -5,7 +5,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
+using TicTacBackend.Domain.Repositories;
+using TicTacBackend.Domain.Repositories.Base;
+using TicTacBackend.Domain.Services.Auth;
+using TicTacBackend.Domain.Services.Interfaces.Auth;
 using TicTacBackend.Infra.Data.DataBase;
+using TicTacBackend.Infra.Data.Repositories;
+using TicTacBackend.Infra.Data.Repositories.Base;
+using TicTacBackend.Infra.Helpers.JwtHelpers;
+using TicTacBackend.Infra.Helpers.JwtHelpers.Interfaces;
 
 namespace TicTacBackend.Infra.IoC
 {
@@ -22,11 +30,14 @@ namespace TicTacBackend.Infra.IoC
 
         private static void ConfigurarRepositories(IServiceCollection services)
         {
-
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         }
 
         private static void ConfigurarServices(IServiceCollection services)
         {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IJwtHelper, JwtHelper>();
         }
 
         private static void ConfigurarAppServices(IServiceCollection services)

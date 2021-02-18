@@ -10,4 +10,8 @@
     <ProjectReference Include="..\TicTacBackend.Infra.Helpers\TicTacBackend.Infra.Helpers.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AppServices\" />
+  </ItemGroup>
+
 </Project>
