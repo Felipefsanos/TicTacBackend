@@ -46,7 +46,7 @@ namespace TicTacBackend.Infra.IoC
 
         private static void ConfigurarDatabases(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(configuration.GetConnectionString("SqlServer"), x => x.MigrationsAssembly("ControleEstoque.Infra.Data")));
+            services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(configuration.GetConnectionString("SqlServer")));
         }
 
         private static void ConfigurarJwt(IServiceCollection services, IConfiguration configuration)

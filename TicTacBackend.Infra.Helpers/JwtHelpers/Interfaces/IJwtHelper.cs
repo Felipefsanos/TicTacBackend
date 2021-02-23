@@ -9,6 +9,6 @@ namespace TicTacBackend.Infra.Helpers.JwtHelpers.Interfaces
 {
     public interface IJwtHelper
     {
-        JwtSecurityToken GerarTokenAcesso(string nomeCompleto, decimal cpf, dynamic roles);
+        JwtSecurityToken GerarTokenAcesso(string nomeCompleto, string cpf, dynamic roles);
     }
 }

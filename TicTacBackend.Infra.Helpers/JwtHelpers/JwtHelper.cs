@@ -20,7 +20,7 @@ namespace TicTacBackend.Infra.Helpers.JwtHelpers
             this.configuration = configuration;
         }
 
-        public JwtSecurityToken GerarTokenAcesso(string nomeCompleto, decimal cpf, dynamic roles)
+        public JwtSecurityToken GerarTokenAcesso(string nomeCompleto, string cpf, dynamic roles)
         {
 			var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"]));
 			var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);

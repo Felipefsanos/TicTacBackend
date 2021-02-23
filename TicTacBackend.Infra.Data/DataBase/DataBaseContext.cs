@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicTacBackend.Domain.Entities;
 
 namespace TicTacBackend.Infra.Data.DataBase
 {
     public class DataBaseContext : DbContext
     {
+        public virtual DbSet<Usuario> Usuarios { get; set; }
+
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
         {
 

@@ -26,8 +26,8 @@ namespace TicTacBackend.Domain.Services.Auth
             ValidacaoLogica.IsTrue<ValidacaoException>(loginCommand is null, "Comando de login não pode ser nulo.");
 
             loginCommand.Validar();
-            //TODO: Obter Usuario;
-            var usuario = new Usuario { Nome = "Felipe Rodrigues", Senha = loginCommand.Password, Cpf = 1321452522, Login = loginCommand.Login };
+
+            var usuario = usuariosRepository.ObterUm(u => u.Login == loginCommand.Login && u.Senha == loginCommand.Password);
 
             ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(usuario is null, "Usuário não encontrado.");
 
