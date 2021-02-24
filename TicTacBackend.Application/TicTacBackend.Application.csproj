@@ -5,13 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TicTacBackend.Domain\TicTacBackend.Domain.csproj" />
-    <ProjectReference Include="..\TicTacBackend.Infra.Data\TicTacBackend.Infra.Data.csproj" />
-    <ProjectReference Include="..\TicTacBackend.Infra.Helpers\TicTacBackend.Infra.Helpers.csproj" />
+    <Compile Remove="AppServices\NewFolder\**" />
+    <EmbeddedResource Remove="AppServices\NewFolder\**" />
+    <None Remove="AppServices\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AppServices\" />
+    <ProjectReference Include="..\TicTacBackend.Domain\TicTacBackend.Domain.csproj" />
+    <ProjectReference Include="..\TicTacBackend.Infra.Data\TicTacBackend.Infra.Data.csproj" />
+    <ProjectReference Include="..\TicTacBackend.Infra.Helpers\TicTacBackend.Infra.Helpers.csproj" />
   </ItemGroup>
 
 </Project>
