@@ -20,6 +20,7 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
         public int QuantidadeCriancas { get; set; }
         public bool BuffetPrincipal { get; set; }
         public string Observacao { get; set; }
+        public decimal Valor { get; set; }
         public long ClienteId { get; set; }
         public Cliente Cliente { get; set; }
 
@@ -45,7 +46,6 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
             ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.TipoEvento == TiposEvento.Indefinido, "Tipo do evento é obrigatório.");
             ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.QuantidadeAdultos < 0, "Quantidade de adultos não pode ser menor que 0");
             ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.QuantidadeCriancas < 0, "Quantidade de crianças não pode ser menor que 0");
-            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.Local is null, "Local do evento é obrigatório.");
 
             DataEvento = novoOrcamentoCommand.DataEvento;
             TipoEvento = novoOrcamentoCommand.TipoEvento;
