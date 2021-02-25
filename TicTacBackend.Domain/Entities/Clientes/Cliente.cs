@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TicTacBackend.Domain.Commands.Clientes.Atualiza;
 using TicTacBackend.Domain.Commands.Clientes.Novo;
 using TicTacBackend.Domain.Entities.Base;
 using TicTacBackend.Domain.Entities.Orcamentos;
@@ -31,9 +29,8 @@ namespace TicTacBackend.Domain.Entities.Clientes
         public Cliente(NovoClienteCommand novoClienteCommand, CanalCaptacao canalCaptacao)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(novoClienteCommand is null, "Comando de novo cliente não pode ser nulo.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(novoClienteCommand.Nome.IsNullOrWhiteSpace(), "Nome do cliente não pode ser vazio ou nulo.");
-            ValidacaoLogica.IsFalse<ValidacaoException>(novoClienteCommand.Contatos.Count() >= 1, "É obrigatório no mínimo um contato do cliente.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(novoClienteCommand.CanalCaptacaoId <= 0, "É obrigatório informar um canal de captação válido.");
+
+            ValidarInformacoesObrigatorias(novoClienteCommand.Nome, novoClienteCommand.Contatos.Count());
 
             Nome = novoClienteCommand.Nome;
             CpfCnpj = novoClienteCommand.CpfCnpj;
@@ -49,6 +46,37 @@ namespace TicTacBackend.Domain.Entities.Clientes
             {
                 Contatos.Add(new Contato(contato));
             }
+        }
+
+        public void Atualizar(AtualizaClienteCommand atualizaClienteCommand)
+        {
+            ValidacaoLogica.IsTrue<ValidacaoException>(atualizaClienteCommand is null, "Comando de atualizar cliente não pode ser nulo.");
+
+            ValidarInformacoesObrigatorias(atualizaClienteCommand.Nome, atualizaClienteCommand.Contatos.Count());
+
+            Nome = atualizaClienteCommand.Nome;
+            CpfCnpj = atualizaClienteCommand.CpfCnpj;
+            Observacao = atualizaClienteCommand.Observacao;
+
+            if (Endereco is null)
+                Endereco = new Endereco();
+
+            if (atualizaClienteCommand.Endereco != null)
+                Endereco.Atualizar(atualizaClienteCommand.Endereco);
+
+            foreach (var contato in atualizaClienteCommand.Contatos)
+            {
+                if (!Contatos.Any(c => c.Id == contato.Id))
+                    Contatos.Add(new Contato(contato));
+                else
+                    Contatos.First(c => c.Id == contato.Id).Atualizar(contato);
+            }
+        }
+
+        private void ValidarInformacoesObrigatorias(string nome, int quantidadeContatos)
+        {
+            ValidacaoLogica.IsTrue<ValidacaoException>(nome.IsNullOrWhiteSpace(), "Nome do cliente não pode ser vazio ou nulo.");
+            ValidacaoLogica.IsFalse<ValidacaoException>(quantidadeContatos >= 1, "É obrigatório no mínimo um contato do cliente.");
         }
     }
 }

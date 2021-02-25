@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data;
+using TicTacBackend.Domain.Commands.Clientes.Atualiza;
 using TicTacBackend.Domain.Commands.Clientes.Novo;
 using TicTacBackend.Domain.Repositories.Base;
 using TicTacBackend.Domain.Repositories.Cliente;
@@ -25,9 +26,10 @@ namespace TicTacBackend.Application.AppServices
             this.clienteService = clienteService;
         }
 
-        public void AtualizarCliente()
+        public void AtualizarCliente(AtualizaClienteCommand atualizaClienteCommand)
         {
-            throw new NotImplementedException();
+            clienteService.AtualizarCliente(atualizaClienteCommand);
+            unitOfWork.SaveChanges();
         }
 
         public void CriarCliente(NovoClienteCommand novoClienteCommand)
