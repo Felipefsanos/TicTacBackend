@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data;
 using TicTacBackend.Domain.Commands.Clientes.Novo;
@@ -10,7 +7,6 @@ using TicTacBackend.Domain.Repositories.Base;
 using TicTacBackend.Domain.Repositories.Cliente;
 using TicTacBackend.Domain.Services.Interfaces.Clientes;
 using TicTacBackend.Infra.Helpers.Exceptions;
-using TicTacBackend.Infra.Helpers.Extension.Methods;
 using TicTacBackend.Infra.Helpers.Mapper;
 using TicTacBackend.Infra.Helpers.Validation;
 

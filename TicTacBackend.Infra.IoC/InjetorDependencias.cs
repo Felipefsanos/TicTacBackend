@@ -10,14 +10,18 @@ using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Domain.Repositories;
 using TicTacBackend.Domain.Repositories.Base;
 using TicTacBackend.Domain.Repositories.Cliente;
+using TicTacBackend.Domain.Repositories.Orcamentos;
 using TicTacBackend.Domain.Services.Auth;
 using TicTacBackend.Domain.Services.Clientes;
 using TicTacBackend.Domain.Services.Interfaces.Auth;
 using TicTacBackend.Domain.Services.Interfaces.Clientes;
+using TicTacBackend.Domain.Services.Interfaces.Orcamentos;
+using TicTacBackend.Domain.Services.Orcamentos;
 using TicTacBackend.Infra.Data.DataBase;
 using TicTacBackend.Infra.Data.Repositories;
 using TicTacBackend.Infra.Data.Repositories.Base;
 using TicTacBackend.Infra.Data.Repositories.Clientes;
+using TicTacBackend.Infra.Data.Repositories.Orcamentos;
 using TicTacBackend.Infra.Helpers.JwtHelpers;
 using TicTacBackend.Infra.Helpers.JwtHelpers.Interfaces;
 
@@ -39,6 +43,7 @@ namespace TicTacBackend.Infra.IoC
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<ICanalCaptacaoRepository, CanalCaptacaoRepository>();
+            services.AddScoped<IOrcamentoRepository, OrcamentoRepository>();
         }
 
         private static void ConfigurarServices(IServiceCollection services)
@@ -47,11 +52,13 @@ namespace TicTacBackend.Infra.IoC
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IJwtHelper, JwtHelper>();
             services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IOrcamentoService, OrcamentoService>();
         }
 
         private static void ConfigurarAppServices(IServiceCollection services)
         {
             services.AddScoped<IClienteAppService, ClienteAppService>();
+            services.AddScoped<IOrcamentoAppService, OrcamentoAppService>();
         }
 
         private static void ConfigurarDatabases(IServiceCollection services, IConfiguration configuration)

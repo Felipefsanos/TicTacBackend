@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TicTacBackend.Domain.Commands.Clientes.Novo;
 using TicTacBackend.Domain.Entities.Base;
+using TicTacBackend.Domain.Entities.Orcamentos;
 using TicTacBackend.Infra.Helpers.Exceptions;
 using TicTacBackend.Infra.Helpers.Extension.Methods;
 using TicTacBackend.Infra.Helpers.Validation;
@@ -20,6 +21,7 @@ namespace TicTacBackend.Domain.Entities.Clientes
         public long CanalCaptacaoId { get; set; }
         public CanalCaptacao CanalCaptacao { get; set; }
         public List<Contato> Contatos { get; set; }
+        public List<Orcamento> Orcamentos { get; set; }
 
         public Cliente()
         {

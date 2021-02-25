@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicTacBackend.Domain.Entities;
 using TicTacBackend.Domain.Entities.Clientes;
+using TicTacBackend.Domain.Entities.Orcamentos;
 
 namespace TicTacBackend.Infra.Data.DataBase
 {
@@ -16,6 +13,8 @@ namespace TicTacBackend.Infra.Data.DataBase
         public virtual DbSet<Endereco> Enderecos { get; set; }
         public virtual DbSet<Contato> Contatos { get; set; }
         public virtual DbSet<CanalCaptacao> CanaisCaptacao { get; set; }
+        public virtual DbSet<Orcamento> Orcamentos { get; set; }
+        public virtual DbSet<Local> Locais { get; set; }
 
 
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
