@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using TicTacBackend.Application.AppServices.Interfaces;
+using TicTacBackend.Application.Data.Orcamentos;
 using TicTacBackend.Domain.Commands.Orcamentos.Novo;
 
 namespace TicTacBackend.Controllers
@@ -19,6 +21,18 @@ namespace TicTacBackend.Controllers
         public void NovoOrcamento(NovoOrcamentoCommand novoOrcamentoCommand)
         {
             orcamentoAppService.CriarOrcamento(novoOrcamentoCommand);
+        }
+
+        [HttpGet]
+        public IEnumerable<OrcamentoData> ObterOrcamentos()
+        {
+            return orcamentoAppService.ObterOrcamentos();
+        }
+
+        [HttpGet("{id}")]
+        public OrcamentoData ObterOrcamento(long id)
+        {
+            return orcamentoAppService.ObterOrcamento(id);
         }
     }
 }

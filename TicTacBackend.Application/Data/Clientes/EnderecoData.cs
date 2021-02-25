@@ -1,4 +1,4 @@
-﻿namespace TicTacBackend.Application.Data
+﻿namespace TicTacBackend.Application.Data.Clientes
 {
     public class EnderecoData
     {

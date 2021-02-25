@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data;
+using TicTacBackend.Application.Data.Clientes;
 using TicTacBackend.Domain.Commands.Clientes.Atualiza;
 using TicTacBackend.Domain.Commands.Clientes.Novo;
 using TicTacBackend.Infra.Helpers.Mapper;
