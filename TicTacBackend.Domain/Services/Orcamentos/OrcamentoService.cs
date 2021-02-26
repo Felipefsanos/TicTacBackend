@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicTacBackend.Domain.Commands.Clientes.Novo;
+using TicTacBackend.Domain.Commands.Orcamentos.Atualiza;
 using TicTacBackend.Domain.Commands.Orcamentos.Novo;
 using TicTacBackend.Domain.Entities.Clientes;
 using TicTacBackend.Domain.Entities.Orcamentos;
@@ -28,9 +29,19 @@ namespace TicTacBackend.Domain.Services.Orcamentos
             this.orcamentoRepository = orcamentoRepository;
         }
 
+        public void AlterarOrcamento(AlteraOrcamentoCommand alterarOrcamentoCommand)
+        {
+            var orcamento = orcamentoRepository.ObterUm(o => o.Id == alterarOrcamentoCommand.Id, "Local");
+
+            ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(orcamento is null, "Orçamento não encontrado.");
+
+            orcamento.Alterar(alterarOrcamentoCommand);
+
+            orcamentoRepository.Atualizar(orcamento);
+        }
+
         public void CriarOrcamento(NovoOrcamentoCommand novoOrcamentoCommand)
         {
-            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand is null, "Comando de criar orçamento não pode ser nulo.");
             ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.Cliente is null, "Deve ser informado o cliente do orçamento.");
 
             var cliente = clienteRepository.ObterUm(c => c.Id == novoOrcamentoCommand.Cliente.Id, "Orcamentos");

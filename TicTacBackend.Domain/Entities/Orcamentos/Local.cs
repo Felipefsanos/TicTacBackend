@@ -1,4 +1,7 @@
-﻿using TicTacBackend.Domain.Commands.Orcamentos.Novo;
+﻿using System;
+using TicTacBackend.Domain.Commands.Orcamentos;
+using TicTacBackend.Domain.Commands.Orcamentos.Atualiza;
+using TicTacBackend.Domain.Commands.Orcamentos.Novo;
 using TicTacBackend.Domain.Entities.Base;
 using TicTacBackend.Infra.Helpers.Exceptions;
 using TicTacBackend.Infra.Helpers.Extension.Methods;
@@ -29,14 +32,20 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
 
         public Local(NovoLocalCommand local)
         {
-            ValidacaoLogica.IsTrue<ValidacaoException>(local.Logradouro.IsNullOrWhiteSpace(), "Logradouro é uma informação obrigatória.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(local.Estado.ToString().IsNullOrWhiteSpace(), "Estado é uma informação obrigatória.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(local.Estado.ToString().Length > 2, "A sigla de estado tem mais de 2 caracteres.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(local.Cidade.IsNullOrWhiteSpace(), "Cidade é uma informação obrigatória.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(local.Bairro.IsNullOrWhiteSpace(), "Bairro é uma informação obrigatória.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(local.CEP <= 0, "CEP é uma informação obrigatória.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(local.TamanhoLocal <= 0, "Tamanho do local não pode ser menor ou igual a 0.");
+            ValidaParametrosObrigatorios(local);
 
+            AtribuirValores(local);
+        }
+
+        public void Alterar(AlteraLocalCommand local)
+        {
+            ValidaParametrosObrigatorios(local);
+
+            AtribuirValores(local);
+        }
+
+        private void AtribuirValores(LocalCommand local)
+        {
             CEP = local.CEP;
             Logradouro = local.Logradouro;
             Numero = local.Numero;
@@ -48,6 +57,17 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
             Escada = local.Escada;
             Elevador = local.Elevador;
             RestricaoHorario = local.RestricaoHorario;
+        }
+
+        private static void ValidaParametrosObrigatorios(LocalCommand local)
+        {
+            ValidacaoLogica.IsTrue<ValidacaoException>(local.Logradouro.IsNullOrWhiteSpace(), "Logradouro é uma informação obrigatória.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(local.Estado.ToString().IsNullOrWhiteSpace(), "Estado é uma informação obrigatória.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(local.Estado.ToString().Length > 2, "A sigla de estado tem mais de 2 caracteres.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(local.Cidade.IsNullOrWhiteSpace(), "Cidade é uma informação obrigatória.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(local.Bairro.IsNullOrWhiteSpace(), "Bairro é uma informação obrigatória.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(local.CEP <= 0, "CEP é uma informação obrigatória.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(local.TamanhoLocal <= 0, "Tamanho do local não pode ser menor ou igual a 0.");
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data.Clientes;
 using TicTacBackend.Application.Data.Orcamentos;
+using TicTacBackend.Domain.Commands.Orcamentos.Atualiza;
 using TicTacBackend.Domain.Commands.Orcamentos.Novo;
 using TicTacBackend.Domain.Repositories.Base;
 using TicTacBackend.Domain.Repositories.Orcamentos;
@@ -29,8 +30,19 @@ namespace TicTacBackend.Application.AppServices
             this.orcamentoRepository = orcamentoRepository;
         }
 
+        public void AlterarOrcamento(AlteraOrcamentoCommand alterarOrcamentoCommand)
+        {
+            ValidacaoLogica.IsTrue<ValidacaoException>(alterarOrcamentoCommand is null, "Comando de alterar orçamento não pode ser nulo.");
+
+            orcamentoService.AlterarOrcamento(alterarOrcamentoCommand);
+
+            unitOfWork.SaveChanges();
+        }
+
         public void CriarOrcamento(NovoOrcamentoCommand novoOrcamentoCommand)
         {
+            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand is null, "Comando de criar orçamento não pode ser nulo.");
+
             orcamentoService.CriarOrcamento(novoOrcamentoCommand);
 
             unitOfWork.SaveChanges();
@@ -50,6 +62,17 @@ namespace TicTacBackend.Application.AppServices
             var orcamentos = orcamentoRepository.ObterTodos("Local");
 
             return Mapper.MapTo<IEnumerable<OrcamentoData>>(orcamentos);
+        }
+
+        public void RemoverOrcamento(long id)
+        {
+            var orcamento = orcamentoRepository.ObterUm(o => o.Id == id, "Local", "Cliente");
+
+            ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(orcamento is null, "Orçamento não encontrado.");
+
+            orcamentoRepository.Remover(orcamento);
+
+            unitOfWork.SaveChanges();
         }
     }
 }

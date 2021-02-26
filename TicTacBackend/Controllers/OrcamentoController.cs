@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data.Orcamentos;
+using TicTacBackend.Domain.Commands.Orcamentos.Atualiza;
 using TicTacBackend.Domain.Commands.Orcamentos.Novo;
 
 namespace TicTacBackend.Controllers
@@ -33,6 +34,20 @@ namespace TicTacBackend.Controllers
         public OrcamentoData ObterOrcamento(long id)
         {
             return orcamentoAppService.ObterOrcamento(id);
+        }
+
+        [HttpPut("{id}")]
+        public void EditarOrcamento(long id, AlteraOrcamentoCommand alterarOrcamentoCommand)
+        {
+            alterarOrcamentoCommand.Id = id;
+
+            orcamentoAppService.AlterarOrcamento(alterarOrcamentoCommand);
+        }
+
+        [HttpDelete("{id}")]
+        public void RemoverCliente(long id)
+        {
+            orcamentoAppService.RemoverOrcamento(id);
         }
     }
 }

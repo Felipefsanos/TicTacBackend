@@ -38,7 +38,7 @@ namespace TicTacBackend.Controllers
             clienteAppService.CriarCliente(novoClienteCommand); 
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public void RemoverCliente(long id)
         {
             clienteAppService.RemoverCliente(id);

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TicTacBackend.Domain.Commands.Orcamentos;
+using TicTacBackend.Domain.Commands.Orcamentos.Atualiza;
 using TicTacBackend.Domain.Commands.Orcamentos.Novo;
 using TicTacBackend.Domain.Entities.Base;
 using TicTacBackend.Domain.Entities.Clientes;
@@ -41,21 +39,45 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
 
         public Orcamento(NovoOrcamentoCommand novoOrcamentoCommand)
         {
-            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.DataEvento == new DateTime(), "Data do evento é obrigatória.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.Local is null, "Local do evento é obrigatório.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.TipoEvento == TiposEvento.Indefinido, "Tipo do evento é obrigatório.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.QuantidadeAdultos < 0, "Quantidade de adultos não pode ser menor que 0");
-            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.QuantidadeCriancas < 0, "Quantidade de crianças não pode ser menor que 0");
+            ValidarParametrosObrigatorios(novoOrcamentoCommand);
 
-            DataEvento = novoOrcamentoCommand.DataEvento;
-            TipoEvento = novoOrcamentoCommand.TipoEvento;
-            QuantidadeAdultos = novoOrcamentoCommand.QuantidadeAdultos;
-            QuantidadeCriancas = novoOrcamentoCommand.QuantidadeCriancas;
-            BuffetPrincipal = novoOrcamentoCommand.BuffetPrincipal;
-            Observacao = novoOrcamentoCommand.Observacao;
+            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.Local is null, "Local do evento é obrigatório.");
+
+            AtribuirValores(novoOrcamentoCommand);
 
             Local = new Local(novoOrcamentoCommand.Local);
+        }
 
+        public void Alterar(AlteraOrcamentoCommand alterarOrcamentoCommand)
+        {
+            ValidarParametrosObrigatorios(alterarOrcamentoCommand);
+
+            ValidacaoLogica.IsTrue<ValidacaoException>(alterarOrcamentoCommand.Local is null, "Local do evento é obrigatório.");
+
+            AtribuirValores(alterarOrcamentoCommand);
+
+            Local.Alterar(alterarOrcamentoCommand.Local);
+        }
+
+        private void AtribuirValores(OrcamentoCommand orcamento)
+        {
+            DataEvento = orcamento.DataEvento;
+            TipoEvento = orcamento.TipoEvento;
+            QuantidadeAdultos = orcamento.QuantidadeAdultos;
+            QuantidadeCriancas = orcamento.QuantidadeCriancas;
+            BuffetPrincipal = orcamento.BuffetPrincipal;
+            Observacao = orcamento.Observacao;
+            Valor = orcamento.Valor;
+        }
+
+        private void ValidarParametrosObrigatorios(OrcamentoCommand orcamento)
+        {
+            ValidacaoLogica.IsTrue<ValidacaoException>(orcamento.DataEvento == new DateTime(), "Data do evento é obrigatória.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(orcamento.TipoEvento == TiposEvento.Indefinido, "Tipo do evento é obrigatório.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(orcamento.QuantidadeAdultos < 0, "Quantidade de adultos não pode ser menor que 0");
+            ValidacaoLogica.IsTrue<ValidacaoException>(orcamento.QuantidadeCriancas < 0, "Quantidade de crianças não pode ser menor que 0");
+            ValidacaoLogica.IsTrue<ValidacaoException>(orcamento.QuantidadeCriancas < 0, "Quantidade de crianças não pode ser menor que 0");
+            ValidacaoLogica.IsTrue<ValidacaoException>(orcamento.Valor <= 0, "Valor do orçamento não pode ser menor que 0");
         }
     }
 }
