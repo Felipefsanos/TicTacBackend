@@ -24,6 +24,10 @@ using TicTacBackend.Infra.Data.Repositories.Clientes;
 using TicTacBackend.Infra.Data.Repositories.Orcamentos;
 using TicTacBackend.Infra.Helpers.JwtHelpers;
 using TicTacBackend.Infra.Helpers.JwtHelpers.Interfaces;
+using AutoMapper;
+using TicTacBackend.Domain.Entities.Clientes;
+using TicTacBackend.Application.Data.Clientes;
+using TicTacBackend.Application.AutoMapper;
 
 namespace TicTacBackend.Infra.IoC
 {
@@ -31,11 +35,17 @@ namespace TicTacBackend.Infra.IoC
     {
         public static void ConfigurarDependencias(IServiceCollection services, IConfiguration configuration)
         {
+            ConfigurarAutoMapper(services);
             ConfigurarJwt(services, configuration);
             ConfigurarDatabases(services, configuration);
             ConfigurarAppServices(services);
             ConfigurarServices(services);
             ConfigurarRepositories(services);
+        }
+
+        private static void ConfigurarAutoMapper(IServiceCollection services)
+        {
+            services.AddAutoMapper(config => AutoMapperConfig.MapperConfig(config));
         }
 
         private static void ConfigurarRepositories(IServiceCollection services)
@@ -59,6 +69,7 @@ namespace TicTacBackend.Infra.IoC
         {
             services.AddScoped<IClienteAppService, ClienteAppService>();
             services.AddScoped<IOrcamentoAppService, OrcamentoAppService>();
+            services.AddScoped<ICanalCaptacaoAppService, CanalCaptacaoAppService>();
         }
 
         private static void ConfigurarDatabases(IServiceCollection services, IConfiguration configuration)

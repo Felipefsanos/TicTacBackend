@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TicTacBackend.Domain\TicTacBackend.Domain.csproj" />
     <ProjectReference Include="..\TicTacBackend.Infra.Data\TicTacBackend.Infra.Data.csproj" />
     <ProjectReference Include="..\TicTacBackend.Infra.Helpers\TicTacBackend.Infra.Helpers.csproj" />

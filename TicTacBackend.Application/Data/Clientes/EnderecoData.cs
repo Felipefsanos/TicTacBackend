@@ -8,6 +8,6 @@
         public string Complemento { get; set; }
         public string Bairro { get; set; }
         public string Cidade { get; set; }
-        public char Estado { get; set; }
+        public string Estado { get; set; }
     }
 }

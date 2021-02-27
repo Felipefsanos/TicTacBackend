@@ -48,13 +48,6 @@ namespace TicTacBackend.Domain.Entities.Clientes
             }
         }
 
-        private void AtribuirValores(ClienteCommand novoClienteCommand)
-        {
-            Nome = novoClienteCommand.Nome;
-            CpfCnpj = novoClienteCommand.CpfCnpj;
-            Observacao = novoClienteCommand.Observacao;
-        }
-
         public void Atualizar(AtualizaClienteCommand atualizaClienteCommand)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(atualizaClienteCommand is null, "Comando de atualizar cliente não pode ser nulo.");
@@ -82,6 +75,13 @@ namespace TicTacBackend.Domain.Entities.Clientes
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(clienteCommand.Nome.IsNullOrWhiteSpace(), "Nome do cliente não pode ser vazio ou nulo.");
             ValidacaoLogica.IsFalse<ValidacaoException>(quantidadeContatos >= 1, "É obrigatório no mínimo um contato do cliente.");
+        }
+
+        private void AtribuirValores(ClienteCommand novoClienteCommand)
+        {
+            Nome = novoClienteCommand.Nome;
+            CpfCnpj = novoClienteCommand.CpfCnpj;
+            Observacao = novoClienteCommand.Observacao;
         }
     }
 }
