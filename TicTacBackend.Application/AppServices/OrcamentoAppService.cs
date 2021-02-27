@@ -20,11 +20,12 @@ namespace TicTacBackend.Application.AppServices
         private readonly IOrcamentoService orcamentoService;
         private readonly IOrcamentoRepository orcamentoRepository;
 
-        public OrcamentoAppService(IUnitOfWork unitOfWork, IOrcamentoService orcamentoService, IOrcamentoRepository orcamentoRepository)
+        public OrcamentoAppService(IUnitOfWork unitOfWork, IOrcamentoService orcamentoService, IOrcamentoRepository orcamentoRepository, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.orcamentoService = orcamentoService;
             this.orcamentoRepository = orcamentoRepository;
+            this.mapper = mapper;
         }
 
         public void AlterarOrcamento(AlteraOrcamentoCommand alterarOrcamentoCommand)
