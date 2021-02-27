@@ -7,13 +7,9 @@ using TicTacBackend.Domain.Models.Clientes;
 
 namespace TicTacBackend.Domain.Commands.Clientes.Novo
 {
-    public class NovoClienteCommand
+    public class NovoClienteCommand : ClienteCommand
     {
-        public string Nome { get; set; }
-        public string CpfCnpj { get; set; }
-        public string Observacao { get; set; }
         public NovoEnderecoCommand Endereco { get; set; }
-        public long CanalCaptacaoId { get; set; }
         public IEnumerable<NovoContatoCommand> Contatos { get; set; }
 
         public NovoClienteCommand()

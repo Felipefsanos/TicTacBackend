@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacBackend.Domain.Commands.Clientes
 {
-    class AlteraClienteCommand
+    public class AlteraClienteCommand : ClienteCommand
     {
     }
 }

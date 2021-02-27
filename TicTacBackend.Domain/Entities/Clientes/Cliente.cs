@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TicTacBackend.Domain.Commands.Clientes;
 using TicTacBackend.Domain.Commands.Clientes.Atualiza;
 using TicTacBackend.Domain.Commands.Clientes.Novo;
 using TicTacBackend.Domain.Entities.Base;
@@ -30,11 +31,10 @@ namespace TicTacBackend.Domain.Entities.Clientes
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(novoClienteCommand is null, "Comando de novo cliente não pode ser nulo.");
 
-            ValidarInformacoesObrigatorias(novoClienteCommand.Nome, novoClienteCommand.Contatos.Count());
+            ValidarInformacoesObrigatorias(novoClienteCommand, novoClienteCommand.Contatos.Count());
 
-            Nome = novoClienteCommand.Nome;
-            CpfCnpj = novoClienteCommand.CpfCnpj;
-            Observacao = novoClienteCommand.Observacao;
+            AtribuirValores(novoClienteCommand);
+
             CanalCaptacao = canalCaptacao;
             Contatos = new List<Contato>();
 
@@ -48,15 +48,20 @@ namespace TicTacBackend.Domain.Entities.Clientes
             }
         }
 
+        private void AtribuirValores(ClienteCommand novoClienteCommand)
+        {
+            Nome = novoClienteCommand.Nome;
+            CpfCnpj = novoClienteCommand.CpfCnpj;
+            Observacao = novoClienteCommand.Observacao;
+        }
+
         public void Atualizar(AtualizaClienteCommand atualizaClienteCommand)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(atualizaClienteCommand is null, "Comando de atualizar cliente não pode ser nulo.");
 
-            ValidarInformacoesObrigatorias(atualizaClienteCommand.Nome, atualizaClienteCommand.Contatos.Count());
+            ValidarInformacoesObrigatorias(atualizaClienteCommand, atualizaClienteCommand.Contatos.Count());
 
-            Nome = atualizaClienteCommand.Nome;
-            CpfCnpj = atualizaClienteCommand.CpfCnpj;
-            Observacao = atualizaClienteCommand.Observacao;
+            AtribuirValores(atualizaClienteCommand);
 
             if (Endereco is null)
                 Endereco = new Endereco();
@@ -73,9 +78,9 @@ namespace TicTacBackend.Domain.Entities.Clientes
             }
         }
 
-        private void ValidarInformacoesObrigatorias(string nome, int quantidadeContatos)
+        private void ValidarInformacoesObrigatorias(ClienteCommand clienteCommand, int quantidadeContatos)
         {
-            ValidacaoLogica.IsTrue<ValidacaoException>(nome.IsNullOrWhiteSpace(), "Nome do cliente não pode ser vazio ou nulo.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(clienteCommand.Nome.IsNullOrWhiteSpace(), "Nome do cliente não pode ser vazio ou nulo.");
             ValidacaoLogica.IsFalse<ValidacaoException>(quantidadeContatos >= 1, "É obrigatório no mínimo um contato do cliente.");
         }
     }

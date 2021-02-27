@@ -7,8 +7,6 @@ namespace TicTacBackend.Domain.Commands.Clientes
         public string Nome { get; set; }
         public string CpfCnpj { get; set; }
         public string Observacao { get; set; }
-        public EnderecoCommand Endereco { get; set; }
         public long CanalCaptacaoId { get; set; }
-        public IEnumerable<ContatoCommand> Contatos { get; set; }
     }
 }
