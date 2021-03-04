@@ -70,6 +70,8 @@ namespace TicTacBackend.Infra.IoC
             services.AddScoped<IClienteAppService, ClienteAppService>();
             services.AddScoped<IOrcamentoAppService, OrcamentoAppService>();
             services.AddScoped<ICanalCaptacaoAppService, CanalCaptacaoAppService>();
+            services.AddScoped<IUsuarioAppService, UsuarioAppService>();
+
         }
 
         private static void ConfigurarDatabases(IServiceCollection services, IConfiguration configuration)
