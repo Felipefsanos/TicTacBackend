@@ -33,10 +33,13 @@ namespace TicTacBackend.Domain.Services.Auth
 
             ValidacaoLogica.IsTrue<NaoAutorizadoException>(usuario.Senha != loginCommand.Password, "Senha incorrenta.");
 
+            if(usuario.PrimeiroAcesso)
+                return new AuthToken() { PrimeiroAcesso = usuario.PrimeiroAcesso };
+
             // TODO: Implementar as roles
             var token = jwtHelper.GerarTokenAcesso(usuario.Nome, usuario.Cpf, null);
 
-            return new AuthToken() { DataExpiracao = token.ValidTo, Token = new JwtSecurityTokenHandler().WriteToken(token) };
+            return new AuthToken() { DataExpiracao = token.ValidTo, Token = new JwtSecurityTokenHandler().WriteToken(token), PrimeiroAcesso = usuario.PrimeiroAcesso };
         }
     }
 }

@@ -38,6 +38,8 @@ namespace TicTacBackend.Application.AppServices
             usuario.Alterar(atualizaUsuarioCommand);
 
             usuarioRepository.Atualizar(usuario);
+
+            unitOfWork.SaveChanges();
         }
 
         public void CriarUsuario(NovoUsuarioCommand novoUsuarioCommand)
@@ -46,9 +48,15 @@ namespace TicTacBackend.Application.AppServices
 
             ValidacaoLogica.IsFalse<RecursoExistenteException>(usuario is null, "Já existe um usuário com este CPF.");
 
+            usuario = usuarioRepository.ObterUm(u => u.Login == novoUsuarioCommand.Login);
+
+            ValidacaoLogica.IsFalse<RecursoExistenteException>(usuario is null, "Já existe um usuário com este Login.");
+
             usuario = new Usuario(novoUsuarioCommand);
 
             usuarioRepository.Adicionar(usuario);
+
+            unitOfWork.SaveChanges();
         }
 
         public IEnumerable<UsuarioData> ObterTodosUsuarios()
@@ -65,6 +73,19 @@ namespace TicTacBackend.Application.AppServices
             ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(usuario is null, "Usuário não encontrado.");
 
             return mapper.Map<UsuarioData>(usuario);
+        }
+
+        public void TrocarSenha(AtualizaSenhaUsuarioCommand atualizaSenhaUsuarioCommand)
+        {
+            var usuario = usuarioRepository.ObterUm(u => u.Login == atualizaSenhaUsuarioCommand.Login);
+
+            ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(usuario is null, "Usuário não encontrado.");
+
+            ValidacaoLogica.IsFalse<ValidacaoException>(usuario.Senha == atualizaSenhaUsuarioCommand.SenhaAntiga, "Senha antiga incorreta.");
+
+            usuario.TrocarSenha(atualizaSenhaUsuarioCommand);
+
+            unitOfWork.SaveChanges();
         }
     }
 }

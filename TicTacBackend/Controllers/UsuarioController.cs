@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data.Usuarios;
 using TicTacBackend.Domain.Commands.Usuarios.Atualiza;
@@ -46,6 +42,13 @@ namespace TicTacBackend.Controllers
         {
             atualizaUsuarioCommand.Id = id;
             usuarioAppService.AtualizarUsuario(atualizaUsuarioCommand);
+        }
+
+        [HttpPut("trocar-senha/{login}")]
+        public void TrocarSenha(string login, AtualizaSenhaUsuarioCommand atualizaSenhaUsuarioCommand)
+        {
+            atualizaSenhaUsuarioCommand.Login = login;
+            usuarioAppService.TrocarSenha(atualizaSenhaUsuarioCommand);
         }
     }
 }

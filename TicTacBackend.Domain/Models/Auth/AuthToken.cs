@@ -10,5 +10,6 @@ namespace TicTacBackend.Domain.Models.Auth
     {
         public DateTime DataExpiracao { get; set; }
         public string Token { get; set; }
+        public bool PrimeiroAcesso { get; set; }
     }
 }

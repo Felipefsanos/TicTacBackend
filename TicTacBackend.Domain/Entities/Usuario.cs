@@ -20,6 +20,7 @@ namespace TicTacBackend.Domain.Entities
         public long Telefone { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
+        public bool PrimeiroAcesso { get; set; }
 
         public Usuario()
         {
@@ -38,7 +39,8 @@ namespace TicTacBackend.Domain.Entities
 
             Cpf = novoUsuarioCommand.Cpf;
             Login = novoUsuarioCommand.Login;
-            Senha = novoUsuarioCommand.Cpf;
+            Senha = novoUsuarioCommand.Cpf.EncodeBase64();
+            PrimeiroAcesso = true;
         }
 
         public void Alterar(AtualizaUsuarioCommand atualizaUsuarioCommand)
@@ -46,6 +48,16 @@ namespace TicTacBackend.Domain.Entities
             ValidarParametros(atualizaUsuarioCommand);
 
             AtribuirValores(atualizaUsuarioCommand);
+        }
+
+        public void TrocarSenha(AtualizaSenhaUsuarioCommand atualizaSenhaUsuarioCommand)
+        {
+            ValidacaoLogica.IsTrue<ValidacaoException>(atualizaSenhaUsuarioCommand.NovaSenha.Length < 8, "Senha deve ser maior que 8 caracteres.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(atualizaSenhaUsuarioCommand.NovaSenha == Cpf
+                                                       || atualizaSenhaUsuarioCommand.NovaSenha == Login, "Senha não pode ser igual ao CPF ou Login.");
+
+            Senha = atualizaSenhaUsuarioCommand.NovaSenha.IsBase64() ? atualizaSenhaUsuarioCommand.NovaSenha : atualizaSenhaUsuarioCommand.NovaSenha.EncodeBase64();
+            PrimeiroAcesso = false;
         }
 
         private void AtribuirValores(UsuarioCommand usuarioCommand)
@@ -59,5 +71,7 @@ namespace TicTacBackend.Domain.Entities
             ValidacaoLogica.IsTrue<ValidacaoException>(usuarioCommand.Nome.IsNullOrWhiteSpace(), "Nome de usuário não pode ser vazio ou nulo.");
             ValidacaoLogica.IsTrue<ValidacaoException>(usuarioCommand.Telefone < 0, "Número de telefone inválido.");
         }
+
+        
     }
 }
