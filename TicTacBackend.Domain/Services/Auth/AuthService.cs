@@ -27,7 +27,7 @@ namespace TicTacBackend.Domain.Services.Auth
 
             loginCommand.Validar();
 
-            var usuario = usuariosRepository.ObterUm(u => u.Login == loginCommand.Login && u.Senha == loginCommand.Password);
+            var usuario = usuariosRepository.ObterUm(u => u.Login == loginCommand.Login);
 
             ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(usuario is null, "Usuário não encontrado.");
 

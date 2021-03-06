@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicTacBackend.Application.Data.Clientes;
+using TicTacBackend.Domain.Commands.CanaisCaptacao.Atualiza;
 
 namespace TicTacBackend.Application.AppServices.Interfaces
 {
@@ -11,7 +12,6 @@ namespace TicTacBackend.Application.AppServices.Interfaces
     {
         IEnumerable<CanalCaptacaoData> ObterCanaisCaptacao();
         CanalCaptacaoData ObterCanalCaptacao(long id);
-        void CriarCanalCaptacao();
-        void RemoverCanalCaptacao();
+        void AlterarCanalCaptacao(AtualizaCanalCaptacaoCommand canalAlterado);
     }
 }

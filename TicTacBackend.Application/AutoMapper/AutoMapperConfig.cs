@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TicTacBackend.Application.Data.Clientes;
 using TicTacBackend.Application.Data.Orcamentos;
+using TicTacBackend.Application.Data.Usuarios;
+using TicTacBackend.Domain.Entities;
 using TicTacBackend.Domain.Entities.Clientes;
 using TicTacBackend.Domain.Entities.Orcamentos;
 
@@ -32,6 +34,9 @@ namespace TicTacBackend.Application.AutoMapper
 
             config.CreateMap<CanalCaptacao, CanalCaptacaoData>();
             config.CreateMap<CanalCaptacaoData, CanalCaptacao>();
+
+            config.CreateMap<Usuario, UsuarioData>();
+            config.CreateMap<UsuarioData, Usuario>();
 
         }
     }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data.Clientes;
+using TicTacBackend.Domain.Commands.CanaisCaptacao.Atualiza;
 
 namespace TicTacBackend.Controllers
 {
@@ -30,6 +31,13 @@ namespace TicTacBackend.Controllers
         public CanalCaptacaoData ObterCanaisCaptacao(long id)
         {
             return canalCaptacaoAppService.ObterCanalCaptacao(id);
+        }
+
+        [HttpPut("{id}")]
+        public void AlterarCanalCaptacao(long id, AtualizaCanalCaptacaoCommand canalAlterado)
+        {
+            canalAlterado.Id = id;
+             canalCaptacaoAppService.AlterarCanalCaptacao(canalAlterado);
         }
     }
 }
