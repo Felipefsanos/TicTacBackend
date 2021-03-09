@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using TicTacBackend.Application.Data.Clientes;
 using TicTacBackend.Application.Data.Orcamentos;
+using TicTacBackend.Application.Data.Produto;
 using TicTacBackend.Application.Data.Usuarios;
 using TicTacBackend.Domain.Entities;
 using TicTacBackend.Domain.Entities.Clientes;
 using TicTacBackend.Domain.Entities.Orcamentos;
+using TicTacBackend.Domain.Entities.Produtos;
 
 namespace TicTacBackend.Application.AutoMapper
 {
@@ -37,6 +39,9 @@ namespace TicTacBackend.Application.AutoMapper
 
             config.CreateMap<Usuario, UsuarioData>();
             config.CreateMap<UsuarioData, Usuario>();
+
+            config.CreateMap<Produto, ProdutoData>();
+            config.CreateMap<ProdutoData, Produto>();
 
         }
     }

@@ -28,6 +28,10 @@ using AutoMapper;
 using TicTacBackend.Domain.Entities.Clientes;
 using TicTacBackend.Application.Data.Clientes;
 using TicTacBackend.Application.AutoMapper;
+using TicTacBackend.Infra.Data.Repositories.Produtos;
+using TicTacBackend.Domain.Repositories.Produto;
+using TicTacBackend.Domain.Services.Produtos;
+using TicTacBackend.Domain.Services.Interfaces.Produtos;
 
 namespace TicTacBackend.Infra.IoC
 {
@@ -54,6 +58,7 @@ namespace TicTacBackend.Infra.IoC
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<ICanalCaptacaoRepository, CanalCaptacaoRepository>();
             services.AddScoped<IOrcamentoRepository, OrcamentoRepository>();
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
         }
 
         private static void ConfigurarServices(IServiceCollection services)
@@ -63,6 +68,7 @@ namespace TicTacBackend.Infra.IoC
             services.AddScoped<IJwtHelper, JwtHelper>();
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<IOrcamentoService, OrcamentoService>();
+            services.AddScoped<IProdutoService, ProdutoService>();
         }
 
         private static void ConfigurarAppServices(IServiceCollection services)
@@ -71,6 +77,7 @@ namespace TicTacBackend.Infra.IoC
             services.AddScoped<IOrcamentoAppService, OrcamentoAppService>();
             services.AddScoped<ICanalCaptacaoAppService, CanalCaptacaoAppService>();
             services.AddScoped<IUsuarioAppService, UsuarioAppService>();
+            services.AddScoped<IProdutoAppService, ProdutoAppService>();
 
         }
 
