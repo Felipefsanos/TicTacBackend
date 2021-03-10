@@ -15,6 +15,7 @@ namespace TicTacBackend.Domain.Entities.Produtos
         public string Descricao { get; set; }
         public string Nome { get; set; }
         public decimal Valor { get; set; }
+        public List<SubProduto> SubProdutos { get; set; }
 
         public Produto()
         {
@@ -28,6 +29,12 @@ namespace TicTacBackend.Domain.Entities.Produtos
             ValidarInformacoesObrigatorias(novoProdutoCommand);
 
             AtribuirValores(novoProdutoCommand);
+
+            SubProdutos = new List<SubProduto>();
+            foreach (var subProduto in novoProdutoCommand.SubProdutos)
+            {
+                SubProdutos.Add(new SubProduto(subProduto));
+            }
         }
 
         internal void Atualizar(ProdutoCommand atualizaProdutoCommand)
@@ -37,6 +44,12 @@ namespace TicTacBackend.Domain.Entities.Produtos
             ValidarInformacoesObrigatorias(atualizaProdutoCommand);
 
             AtribuirValores(atualizaProdutoCommand);
+
+            SubProdutos = new List<SubProduto>();
+            foreach (var subProduto in atualizaProdutoCommand.SubProdutos)
+            {
+                SubProdutos.Add(new SubProduto(subProduto));
+            }
         }
 
         private void ValidarInformacoesObrigatorias(ProdutoCommand produtoCommand)
