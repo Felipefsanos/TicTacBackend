@@ -45,13 +45,13 @@ namespace TicTacBackend.Application.AppServices
 
         public ProdutoData ObterProduto(long id)
         {
-            var produto = produtoRepository.ObterUm(p => p.Id == id);
+            var produto = produtoRepository.ObterUm(p => p.Id == id,"SubProdutos");
             return mapper.Map<Produto, ProdutoData>(produto);
         }
 
         public IEnumerable<ProdutoData> ObterTodosProdutos()
         {
-            var produtos = produtoRepository.ObterTodos();
+            var produtos = produtoRepository.ObterTodos("SubProdutos");
             return mapper.Map<IEnumerable<Produto>, IEnumerable<ProdutoData>>(produtos);
         }
 
