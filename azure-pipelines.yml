@@ -40,3 +40,5 @@ steps:
     appType: 'webApp'
     WebAppName: 'tictacapi'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+- task: PublishBuildArtifacts@1
