@@ -32,3 +32,11 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Avaliação Gratuita (838f8f77-7024-41fa-80c4-3c6eeb2575e4)'
+    appType: 'webApp'
+    WebAppName: 'tictacapi'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
