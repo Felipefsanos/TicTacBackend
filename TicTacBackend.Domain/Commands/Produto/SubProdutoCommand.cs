@@ -7,12 +7,11 @@ using TicTacBackend.Domain.Entities.Produtos;
 
 namespace TicTacBackend.Domain.Commands.Produto
 {
-   public class ProdutoCommand
+   public class SubProdutoCommand
     {
         public long Id { get; set; }
         public string Descricao { get; set; }
         public string Nome { get; set; }
         public decimal Valor { get; set; }
-        public List<SubProdutoCommand> SubProdutos { get; set; }
     }
 }

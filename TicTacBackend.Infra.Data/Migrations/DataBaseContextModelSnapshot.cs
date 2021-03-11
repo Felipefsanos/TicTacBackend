@@ -230,6 +230,9 @@ namespace TicTacBackend.Infra.Data.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("QuantidadeDisponivel")
+                        .HasColumnType("bigint");
+
                     b.Property<decimal>("Valor")
                         .HasColumnType("decimal(18,2)");
 
@@ -251,7 +254,7 @@ namespace TicTacBackend.Infra.Data.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("ProdutoId")
+                    b.Property<long?>("ProdutoId")
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("Valor")
@@ -351,13 +354,9 @@ namespace TicTacBackend.Infra.Data.Migrations
 
             modelBuilder.Entity("TicTacBackend.Domain.Entities.Produtos.SubProduto", b =>
                 {
-                    b.HasOne("TicTacBackend.Domain.Entities.Produtos.Produto", "Produto")
+                    b.HasOne("TicTacBackend.Domain.Entities.Produtos.Produto", null)
                         .WithMany("SubProdutos")
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Produto");
+                        .HasForeignKey("ProdutoId");
                 });
 
             modelBuilder.Entity("TicTacBackend.Domain.Entities.Clientes.CanalCaptacao", b =>

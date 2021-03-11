@@ -16,6 +16,7 @@ namespace TicTacBackend.Domain.Entities.Produtos
         public string Nome { get; set; }
         public decimal Valor { get; set; }
         public List<SubProduto> SubProdutos { get; set; }
+        public long QuantidadeDisponivel { get; set; }
 
         public Produto()
         {

@@ -59,6 +59,7 @@ namespace TicTacBackend.Infra.IoC
             services.AddScoped<ICanalCaptacaoRepository, CanalCaptacaoRepository>();
             services.AddScoped<IOrcamentoRepository, OrcamentoRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<ISubProdutoRepository, SubProdutoRepository>();
         }
 
         private static void ConfigurarServices(IServiceCollection services)
@@ -69,6 +70,7 @@ namespace TicTacBackend.Infra.IoC
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<IOrcamentoService, OrcamentoService>();
             services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<ISubProdutoService, SubProdutoService>();
         }
 
         private static void ConfigurarAppServices(IServiceCollection services)
@@ -78,6 +80,7 @@ namespace TicTacBackend.Infra.IoC
             services.AddScoped<ICanalCaptacaoAppService, CanalCaptacaoAppService>();
             services.AddScoped<IUsuarioAppService, UsuarioAppService>();
             services.AddScoped<IProdutoAppService, ProdutoAppService>();
+            services.AddScoped<ISubProdutoAppService, SubProdutoAppService>();
 
         }
 
