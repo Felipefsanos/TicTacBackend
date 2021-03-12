@@ -20,7 +20,7 @@ namespace TicTacBackend.Domain.Services.Produtos
         {
             var produto = produtoRepository.ObterUm(p => p.Id == atualizaProdutoCommand.Id);
 
-            ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(produto is null, "Produto não encontrado.");
+            ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(produto is null, "Produtos não encontrado.");
 
             produto.Atualizar(atualizaProdutoCommand);
 
@@ -29,7 +29,7 @@ namespace TicTacBackend.Domain.Services.Produtos
 
         public void CriarProduto(ProdutoCommand novoProdutoCommand)
         {
-            var produto = new Produto(novoProdutoCommand);
+            var produto = new Entities.Produtos.Produto(novoProdutoCommand);
             produtoRepository.Adicionar(produto);
         }
     }

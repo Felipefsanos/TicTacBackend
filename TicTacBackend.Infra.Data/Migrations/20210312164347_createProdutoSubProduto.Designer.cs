@@ -3,36 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicTacBackend.Infra.Data.DataBase;
 
 namespace TicTacBackend.Infra.Data.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210312164347_createProdutoSubProduto")]
+    partial class createProdutoSubProduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ProdutoSubProduto", b =>
-                {
-                    b.Property<long>("ProdutoId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("SubProdutosId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("ProdutoId", "SubProdutosId");
-
-                    b.HasIndex("SubProdutosId");
-
-                    b.ToTable("ProdutoSubProduto");
-                });
 
             modelBuilder.Entity("TicTacBackend.Domain.Entities.Clientes.CanalCaptacao", b =>
                 {
@@ -242,11 +229,11 @@ namespace TicTacBackend.Infra.Data.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Disponivel")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("QuantidadeDisponivel")
+                        .HasColumnType("bigint");
 
                     b.Property<decimal>("Valor")
                         .HasColumnType("decimal(18,2)");
@@ -269,10 +256,15 @@ namespace TicTacBackend.Infra.Data.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("Quantidade")
+                    b.Property<long?>("ProdutoId")
                         .HasColumnType("bigint");
 
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("SubProdutos");
                 });
@@ -305,21 +297,6 @@ namespace TicTacBackend.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("ProdutoSubProduto", b =>
-                {
-                    b.HasOne("TicTacBackend.Domain.Entities.Produtos.Produto", null)
-                        .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TicTacBackend.Domain.Entities.Produtos.SubProduto", null)
-                        .WithMany()
-                        .HasForeignKey("SubProdutosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("TicTacBackend.Domain.Entities.Clientes.Cliente", b =>
@@ -377,6 +354,13 @@ namespace TicTacBackend.Infra.Data.Migrations
                     b.Navigation("Cliente");
                 });
 
+            modelBuilder.Entity("TicTacBackend.Domain.Entities.Produtos.SubProduto", b =>
+                {
+                    b.HasOne("TicTacBackend.Domain.Entities.Produtos.Produto", null)
+                        .WithMany("SubProdutos")
+                        .HasForeignKey("ProdutoId");
+                });
+
             modelBuilder.Entity("TicTacBackend.Domain.Entities.Clientes.CanalCaptacao", b =>
                 {
                     b.Navigation("Cliente");
@@ -394,6 +378,11 @@ namespace TicTacBackend.Infra.Data.Migrations
             modelBuilder.Entity("TicTacBackend.Domain.Entities.Orcamentos.Orcamento", b =>
                 {
                     b.Navigation("Local");
+                });
+
+            modelBuilder.Entity("TicTacBackend.Domain.Entities.Produtos.Produto", b =>
+                {
+                    b.Navigation("SubProdutos");
                 });
 #pragma warning restore 612, 618
         }

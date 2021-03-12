@@ -1,4 +1,5 @@
-﻿using TicTacBackend.Domain.Commands.Produto;
+﻿using System.Collections.Generic;
+using TicTacBackend.Domain.Commands.Produto;
 using TicTacBackend.Domain.Entities.Base;
 using TicTacBackend.Infra.Helpers.Exceptions;
 using TicTacBackend.Infra.Helpers.Validation;
@@ -9,7 +10,10 @@ namespace TicTacBackend.Domain.Entities.Produtos
     {
         public string Descricao { get; set; }
         public string Nome { get; set; }
-        public decimal Valor { get; set; }
+        public List<Produto> Produto { get; set; }
+        public long Quantidade { get; set; }
+
+
         public SubProduto()
         {
 
@@ -40,8 +44,9 @@ namespace TicTacBackend.Domain.Entities.Produtos
         private void AtribuirValores(SubProdutoCommand novoSubProdutoCommand)
         {
             Nome = novoSubProdutoCommand.Nome;
-            Valor = novoSubProdutoCommand.Valor;
             Descricao = novoSubProdutoCommand.Descricao;
+            Quantidade = novoSubProdutoCommand.Quantidade;
+            
         }
     }
 

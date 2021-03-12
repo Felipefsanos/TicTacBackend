@@ -59,7 +59,7 @@ namespace TicTacBackend.Application.AppServices
         {
             var produto = produtoRepository.ObterUm(p => p.Id == id);
 
-            ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(produto is null, "Produto não encontrado.");
+            ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(produto is null, "Produtos não encontrado.");
 
             produtoRepository.Remover(produto);
 
