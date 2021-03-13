@@ -7,31 +7,30 @@ using System;
 using System.Text;
 using TicTacBackend.Application.AppServices;
 using TicTacBackend.Application.AppServices.Interfaces;
+using TicTacBackend.Application.AutoMapper;
 using TicTacBackend.Domain.Repositories;
 using TicTacBackend.Domain.Repositories.Base;
 using TicTacBackend.Domain.Repositories.Cliente;
 using TicTacBackend.Domain.Repositories.Orcamentos;
+using TicTacBackend.Domain.Repositories.Prestadores;
+using TicTacBackend.Domain.Repositories.Produto;
 using TicTacBackend.Domain.Services.Auth;
 using TicTacBackend.Domain.Services.Clientes;
 using TicTacBackend.Domain.Services.Interfaces.Auth;
 using TicTacBackend.Domain.Services.Interfaces.Clientes;
 using TicTacBackend.Domain.Services.Interfaces.Orcamentos;
+using TicTacBackend.Domain.Services.Interfaces.Produtos;
 using TicTacBackend.Domain.Services.Orcamentos;
+using TicTacBackend.Domain.Services.Produtos;
 using TicTacBackend.Infra.Data.DataBase;
 using TicTacBackend.Infra.Data.Repositories;
 using TicTacBackend.Infra.Data.Repositories.Base;
 using TicTacBackend.Infra.Data.Repositories.Clientes;
 using TicTacBackend.Infra.Data.Repositories.Orcamentos;
+using TicTacBackend.Infra.Data.Repositories.Prestadores;
+using TicTacBackend.Infra.Data.Repositories.Produtos;
 using TicTacBackend.Infra.Helpers.JwtHelpers;
 using TicTacBackend.Infra.Helpers.JwtHelpers.Interfaces;
-using AutoMapper;
-using TicTacBackend.Domain.Entities.Clientes;
-using TicTacBackend.Application.Data.Clientes;
-using TicTacBackend.Application.AutoMapper;
-using TicTacBackend.Infra.Data.Repositories.Produtos;
-using TicTacBackend.Domain.Repositories.Produto;
-using TicTacBackend.Domain.Services.Produtos;
-using TicTacBackend.Domain.Services.Interfaces.Produtos;
 
 namespace TicTacBackend.Infra.IoC
 {
@@ -60,6 +59,7 @@ namespace TicTacBackend.Infra.IoC
             services.AddScoped<IOrcamentoRepository, OrcamentoRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<ISubProdutoRepository, SubProdutoRepository>();
+            services.AddScoped<IPrestadorRepository, PrestadorRepository>();
         }
 
         private static void ConfigurarServices(IServiceCollection services)
@@ -81,7 +81,7 @@ namespace TicTacBackend.Infra.IoC
             services.AddScoped<IUsuarioAppService, UsuarioAppService>();
             services.AddScoped<IProdutoAppService, ProdutoAppService>();
             services.AddScoped<ISubProdutoAppService, SubProdutoAppService>();
-
+            services.AddScoped<IPrestadorAppService, PrestadorAppService>();
         }
 
         private static void ConfigurarDatabases(IServiceCollection services, IConfiguration configuration)

@@ -3,6 +3,7 @@ using System.Linq;
 using TicTacBackend.Domain.Entities;
 using TicTacBackend.Domain.Entities.Clientes;
 using TicTacBackend.Domain.Entities.Orcamentos;
+using TicTacBackend.Domain.Entities.Prestadores;
 using TicTacBackend.Domain.Entities.Produtos;
 
 namespace TicTacBackend.Infra.Data.DataBase
@@ -18,10 +19,12 @@ namespace TicTacBackend.Infra.Data.DataBase
         public virtual DbSet<Local> Locais { get; set; }
         public virtual DbSet<Produto> Produtos { get; set; }
         public virtual DbSet<SubProduto> SubProdutos { get; set; }
+        public virtual DbSet<Prestador> Prestadores { get; set; }
+
 
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
         {
-
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

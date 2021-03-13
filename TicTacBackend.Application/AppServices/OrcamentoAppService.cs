@@ -57,14 +57,14 @@ namespace TicTacBackend.Application.AppServices
 
         public IEnumerable<OrcamentoData> ObterOrcamentos()
         {
-            var orcamentos = orcamentoRepository.ObterTodos("Local");
+            var orcamentos = orcamentoRepository.ObterTodos("Local", "Cliente", "Cliente.Contatos");
 
             return mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoData>>(orcamentos);
         }
 
         public void RemoverOrcamento(long id)
         {
-            var orcamento = orcamentoRepository.ObterUm(o => o.Id == id, "Local", "Cliente");
+            var orcamento = orcamentoRepository.ObterUm(o => o.Id == id, "Local", "Cliente", "Cliente.Contatos");
 
             ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(orcamento is null, "Orçamento não encontrado.");
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TicTacBackend.Domain.Commands.Clientes.Atualiza;
 using TicTacBackend.Domain.Commands.Clientes.Novo;
 using TicTacBackend.Domain.Entities.Base;
+using TicTacBackend.Domain.Entities.Prestadores;
 using TicTacBackend.Infra.Helpers.Exceptions;
 using TicTacBackend.Infra.Helpers.Extension.Methods;
 using TicTacBackend.Infra.Helpers.Validation;
@@ -21,8 +22,10 @@ namespace TicTacBackend.Domain.Entities.Clientes
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
-        public long ClienteId { get; set; }
+        public long? ClienteId { get; set; }
         public Cliente Cliente { get; set; }
+        public long? PrestadorId { get; set; }
+        public Prestador Prestador { get; set; }
 
         public Endereco()
         {
