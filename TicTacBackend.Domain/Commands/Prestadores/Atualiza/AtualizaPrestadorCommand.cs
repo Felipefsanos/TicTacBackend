@@ -9,6 +9,7 @@ namespace TicTacBackend.Domain.Commands.Prestadores.Atualiza
 {
     public class AtualizaPrestadorCommand : PrestadorCommand
     {
+        public long Id { get; set; }
         public AtualizaEnderecoCommand Endereco { get; set; }
         public List<AtualizaContatoCommand> Contatos { get; set; }
     }

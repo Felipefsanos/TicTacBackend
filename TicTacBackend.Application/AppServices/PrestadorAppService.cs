@@ -10,6 +10,7 @@ using TicTacBackend.Domain.Commands.Prestadores.Atualiza;
 using TicTacBackend.Domain.Commands.Prestadores.Novo;
 using TicTacBackend.Domain.Repositories.Base;
 using TicTacBackend.Domain.Repositories.Prestadores;
+using TicTacBackend.Domain.Services.Interfaces.Prestadores;
 using TicTacBackend.Infra.Helpers.Exceptions;
 using TicTacBackend.Infra.Helpers.Validation;
 
@@ -17,27 +18,29 @@ namespace TicTacBackend.Application.AppServices
 {
     public class PrestadorAppService : IPrestadorAppService
     {
+        private readonly IPrestadorService prestadorService;
         private readonly IPrestadorRepository prestadorRepository;
         private readonly IMapper mapper;
         private readonly IUnitOfWork unitOfWork;
 
-        public PrestadorAppService(IMapper mapper, IUnitOfWork unitOfWork, IPrestadorRepository prestadorRepository)
+        public PrestadorAppService(IMapper mapper, IUnitOfWork unitOfWork, IPrestadorRepository prestadorRepository, IPrestadorService prestadorService)
         {
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
             this.prestadorRepository = prestadorRepository;
+            this.prestadorService = prestadorService;
         }
 
         public void AtualizarPrestador(AtualizaPrestadorCommand atualizaPrestadorCommand)
         {
-            throw new NotImplementedException();
+            prestadorService.AtualizarPrestador(atualizaPrestadorCommand);
 
             unitOfWork.SaveChanges();
         }
 
         public void CriarPrestador(NovoPrestadorCommand novoPrestadorCommand)
         {
-            throw new NotImplementedException();
+            prestadorService.CriarPrestador(novoPrestadorCommand);
 
             unitOfWork.SaveChanges();
         }

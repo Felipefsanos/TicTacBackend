@@ -9,6 +9,7 @@ namespace TicTacBackend.Application.Data.Prestadores
 {
     public class PrestadorData
     {
+        public long Id { get; set; }
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public EnderecoData Endereco { get; set; }

@@ -58,7 +58,7 @@ namespace TicTacBackend.Domain.Entities.Clientes
             Estado = endereco.Estado;
         }
 
-        private void ValidarInformacoesObrigatorias(NovoEnderecoCommand endereco)
+        private static void ValidarInformacoesObrigatorias(NovoEnderecoCommand endereco)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(endereco.Logradouro.IsNullOrWhiteSpace(), "Logradouro é uma informação obrigatória.");
             ValidacaoLogica.IsTrue<ValidacaoException>(endereco.Estado.ToString().IsNullOrWhiteSpace(), "Estado é uma informação obrigatória.");
@@ -68,7 +68,7 @@ namespace TicTacBackend.Domain.Entities.Clientes
             ValidacaoLogica.IsTrue<ValidacaoException>(endereco.CEP <= 0, "CEP é uma informação obrigatória.");
         }
 
-        private void ValidarInformacoesObrigatorias(AtualizaEnderecoCommand endereco)
+        private static void ValidarInformacoesObrigatorias(AtualizaEnderecoCommand endereco)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(endereco.Logradouro.IsNullOrWhiteSpace(), "Logradouro é uma informação obrigatória.");
             ValidacaoLogica.IsTrue<ValidacaoException>(endereco.Estado.ToString().IsNullOrWhiteSpace(), "Estado é uma informação obrigatória.");
