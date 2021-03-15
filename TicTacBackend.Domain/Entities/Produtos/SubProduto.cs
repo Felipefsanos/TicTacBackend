@@ -11,6 +11,7 @@ namespace TicTacBackend.Domain.Entities.Produtos
         public string Descricao { get; set; }
         public string Nome { get; set; }
         public List<Produto> Produtos { get; set; }
+        public long ProdutoId { get; set; }
 
         public SubProduto()
         {
@@ -31,7 +32,9 @@ namespace TicTacBackend.Domain.Entities.Produtos
             {
                 foreach (var prod in subproduto.Produtos)
                 {
-                    Produtos.Add(new Produto(prod));
+                    prod.SubProdutos = new List<SubProduto>();
+                    prod.SubProdutos.Add(subproduto);
+                    Produtos.Add(prod);
                 }
             }
             
@@ -51,7 +54,9 @@ namespace TicTacBackend.Domain.Entities.Produtos
             {
                 foreach (var prod in atualizaSubProdutoCommand.Produtos)
                 {
-                    Produtos.Add(new Produto(prod));
+                    prod.SubProdutos = new List<SubProduto>();
+                    prod.SubProdutos.Add(atualizaSubProdutoCommand);
+                    Produtos.Add(prod);
                 }
             }
         }

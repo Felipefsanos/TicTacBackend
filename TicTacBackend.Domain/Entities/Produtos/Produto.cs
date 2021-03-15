@@ -15,6 +15,7 @@ namespace TicTacBackend.Domain.Entities.Produtos
         public string Descricao { get; set; }
         public string Nome { get; set; }
         public decimal Valor { get; set; }
+        public long SubProdutoId { get; set; }
         public List<SubProduto> SubProdutos { get; set; }
         public bool Disponivel { get; set; }
 
@@ -32,12 +33,15 @@ namespace TicTacBackend.Domain.Entities.Produtos
             AtribuirValores(produto);
 
             SubProdutos = new List<SubProduto>();
+
             if(produto.SubProdutos != null)
             {
                 foreach (var sub in produto.SubProdutos)
                 {
+
+                    sub.Produtos = new List<Produto>();
                     sub.Produtos.Add(produto);
-                    SubProdutos.Add(new SubProduto(sub));
+                    SubProdutos.Add(sub);
                 }
             }
            
@@ -57,8 +61,9 @@ namespace TicTacBackend.Domain.Entities.Produtos
             {
                 foreach (var sub in atualizaProduto.SubProdutos)
                 {
+                    sub.Produtos = new List<Produto>();
                     sub.Produtos.Add(atualizaProduto);
-                    SubProdutos.Add(new SubProduto(sub));
+                    SubProdutos.Add(sub);
                 }
             }
         }
