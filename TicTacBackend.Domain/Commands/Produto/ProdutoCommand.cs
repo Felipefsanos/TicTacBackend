@@ -13,6 +13,8 @@ namespace TicTacBackend.Domain.Commands.Produto
         public string Descricao { get; set; }
         public string Nome { get; set; }
         public decimal Valor { get; set; }
-        public List<SubProdutoCommand> SubProdutos { get; set; }
+        public List<SubProduto> SubProdutos { get; set; }
+        public bool Disponivel { get; set; }
     }
+
 }

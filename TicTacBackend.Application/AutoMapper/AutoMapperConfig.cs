@@ -8,6 +8,7 @@ using TicTacBackend.Application.Data.Clientes;
 using TicTacBackend.Application.Data.Orcamentos;
 using TicTacBackend.Application.Data.Produto;
 using TicTacBackend.Application.Data.Usuarios;
+using TicTacBackend.Domain.Commands.Produto;
 using TicTacBackend.Domain.Entities;
 using TicTacBackend.Domain.Entities.Clientes;
 using TicTacBackend.Domain.Entities.Orcamentos;
@@ -42,6 +43,18 @@ namespace TicTacBackend.Application.AutoMapper
 
             config.CreateMap<Produto, ProdutoData>();
             config.CreateMap<ProdutoData, Produto>();
+
+            config.CreateMap<SubProduto, SubProdutoData>();
+            config.CreateMap<SubProduto, SubProdutoData>();
+
+            config.CreateMap<ProdutoCommand, Produto>();
+            config.CreateMap<Produto, ProdutoCommand>();
+
+
+            config.CreateMap<SubProdutoCommand, SubProduto>();
+            config.CreateMap<SubProduto, SubProdutoCommand>();
+
+
 
         }
     }

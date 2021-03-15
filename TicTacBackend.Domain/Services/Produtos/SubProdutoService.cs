@@ -1,5 +1,5 @@
-﻿using TicTacBackend.Domain.Commands.Produto;
-using TicTacBackend.Domain.Entities.Produtos;
+﻿using TicTacBackend.Domain.Entities.Produtos;
+using TicTacBackend.Domain.Repositories.Base;
 using TicTacBackend.Domain.Repositories.Produto;
 using TicTacBackend.Domain.Services.Interfaces.Produtos;
 using TicTacBackend.Infra.Helpers.Exceptions;
@@ -10,27 +10,31 @@ namespace TicTacBackend.Domain.Services.Produtos
     public class SubProdutoService : ISubProdutoService
     {
         private readonly ISubProdutoRepository subProdutoRepository;
+        private readonly IProdutoRepository produtoRepository;
 
-        public SubProdutoService(ISubProdutoRepository subProdutoRepository)
+
+        public SubProdutoService(ISubProdutoRepository subProdutoRepository, IUnitOfWork unitOfWork, IProdutoRepository produtoRepository)
         {
             this.subProdutoRepository = subProdutoRepository;
+            this.produtoRepository = produtoRepository;
         }
 
-        public void AtualizarProduto(SubProdutoCommand atualizaSubProdutoCommand)
+        public void AtualizarSubProduto(SubProduto atualizaSubProduto)
         {
-            var subProduto = subProdutoRepository.ObterUm(p => p.Id == atualizaSubProdutoCommand.Id);
+            var subProduto = subProdutoRepository.ObterUm(p => p.Id == atualizaSubProduto.Id);
 
             ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(subProduto is null, "SubProduto não encontrado.");
 
-            subProduto.Atualizar(atualizaSubProdutoCommand);
+            subProduto.Atualizar(atualizaSubProduto);
 
             subProdutoRepository.Atualizar(subProduto);
         }
 
-        public void CriarProduto(SubProdutoCommand novoSubProdutoCommand)
+        public void CriarSubProduto(SubProduto novoSubProduto)
         {
-            var produto = new SubProduto(novoSubProdutoCommand);
-            subProdutoRepository.Adicionar(produto);
+            var subproduto = new SubProduto(novoSubProduto);
+
+            subProdutoRepository.Adicionar(subproduto);
         }
     }
 }

@@ -1,20 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data.Produto;
 using TicTacBackend.Domain.Commands.Produto;
+using TicTacBackend.Domain.Entities.Produtos;
 
 namespace TicTacBackend.Controllers
 {
-    [Route("api/sub-produto")]
+    [Route("api/sub-produtos")]
     [ApiController]
     public class SubProdutoController : ControllerBase
     {
         private readonly ISubProdutoAppService subProdutoAppService;
+        private readonly IMapper mapper;
 
-        public SubProdutoController(ISubProdutoAppService subProdutoAppService)
+        public SubProdutoController(ISubProdutoAppService subProdutoAppService, IMapper mapper)
         {
             this.subProdutoAppService = subProdutoAppService;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -32,7 +36,8 @@ namespace TicTacBackend.Controllers
         [HttpPost]
         public void CriarProduto(SubProdutoCommand CriarSubprodutoCommand)
         {
-            subProdutoAppService.CriarSubProduto(CriarSubprodutoCommand);
+            var CriarSubproduto = mapper.Map<SubProdutoCommand, SubProduto>(CriarSubprodutoCommand);
+            subProdutoAppService.CriarSubProduto(CriarSubproduto);
         }
 
         [HttpDelete("{id}")]
@@ -45,7 +50,8 @@ namespace TicTacBackend.Controllers
         public void AtualizarProduto(long id, SubProdutoCommand atualizaSubProdutoCommand)
         {
             atualizaSubProdutoCommand.Id = id;
-            subProdutoAppService.AtualizarSubProduto(atualizaSubProdutoCommand);
+            var atualizaSubProduto = mapper.Map<SubProdutoCommand, SubProduto>(atualizaSubProdutoCommand);
+            subProdutoAppService.AtualizarSubProduto(atualizaSubProduto);
         }
     }
 }

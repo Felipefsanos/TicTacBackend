@@ -10,42 +10,61 @@ namespace TicTacBackend.Domain.Entities.Produtos
     {
         public string Descricao { get; set; }
         public string Nome { get; set; }
-        public List<Produto> Produto { get; set; }
-        public long Quantidade { get; set; }
-
+        public List<Produto> Produtos { get; set; }
 
         public SubProduto()
         {
 
         }
 
-        public SubProduto(SubProdutoCommand subproduto)
+        public SubProduto(SubProduto subproduto)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(subproduto is null, "Comando de novo Subproduto não pode ser nulo.");
 
             ValidarInformacoesObrigatorias(subproduto);
 
             AtribuirValores(subproduto);
+
+            Produtos = new List<Produto>();
+
+            if(subproduto.Produtos != null)
+            {
+                foreach (var prod in subproduto.Produtos)
+                {
+                    Produtos.Add(new Produto(prod));
+                }
+            }
+            
         }
 
-        internal void Atualizar(SubProdutoCommand atualizaSubProdutoCommand)
+        internal void Atualizar(SubProduto atualizaSubProdutoCommand)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(atualizaSubProdutoCommand is null, "Comando de atualizar Subproduto não pode ser nulo.");
 
             ValidarInformacoesObrigatorias(atualizaSubProdutoCommand);
 
             AtribuirValores(atualizaSubProdutoCommand);
+
+            Produtos = new List<Produto>();
+
+            if (atualizaSubProdutoCommand.Produtos != null)
+            {
+                foreach (var prod in atualizaSubProdutoCommand.Produtos)
+                {
+                    Produtos.Add(new Produto(prod));
+                }
+            }
         }
 
-        private void ValidarInformacoesObrigatorias(SubProdutoCommand subProdutoCommand)
+        private void ValidarInformacoesObrigatorias(SubProduto subProdutoCommand)
         {
-            ValidacaoLogica.IsTrue<ValidacaoException>(subProdutoCommand.Nome.IsNullOrWhiteSpace(), "Nome do produto não pode ser vazio ou nulo.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(subProdutoCommand.Nome.IsNullOrWhiteSpace(), "Nome do Subproduto não pode ser vazio ou nulo.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(subProdutoCommand.Descricao.IsNullOrWhiteSpace(), "Descrição do Subproduto não pode ser vazio ou nulo.");
         }
-        private void AtribuirValores(SubProdutoCommand novoSubProdutoCommand)
+        private void AtribuirValores(SubProduto novoSubProdutoCommand)
         {
             Nome = novoSubProdutoCommand.Nome;
             Descricao = novoSubProdutoCommand.Descricao;
-            Quantidade = novoSubProdutoCommand.Quantidade;
             
         }
     }

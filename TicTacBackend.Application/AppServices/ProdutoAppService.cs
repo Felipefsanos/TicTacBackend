@@ -31,15 +31,15 @@ namespace TicTacBackend.Application.AppServices
             this.produtoService = produtoService;
         }
 
-        public void AtualizarProduto(ProdutoCommand atualizaProdutoCommand)
+        public void AtualizarProduto(Produto produto)
         {
-            produtoService.AtualizarProduto(atualizaProdutoCommand);
+            produtoService.AtualizarProduto(produto);
             unitOfWork.SaveChanges();
         }
 
-        public void CriarProduto(ProdutoCommand novoProdutoCommand)
+        public void CriarProduto(Produto produto)
         {
-            produtoService.CriarProduto(novoProdutoCommand);
+            produtoService.CriarProduto(produto);
             unitOfWork.SaveChanges();
         }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TicTacBackend.Application.Data.Produto;
 using TicTacBackend.Domain.Commands.Produto;
+using TicTacBackend.Domain.Entities.Produtos;
 
 namespace TicTacBackend.Application.AppServices.Interfaces
 {
@@ -8,8 +9,8 @@ namespace TicTacBackend.Application.AppServices.Interfaces
     {
         IEnumerable<ProdutoData> ObterTodosProdutos();
         ProdutoData ObterProduto(long id);
-        void CriarProduto(ProdutoCommand produtoCommand);
+        void CriarProduto(Produto produto);
         void RemoverProduto(long id);
-        void AtualizarProduto(ProdutoCommand atualizaProdutoCommand);
+        void AtualizarProduto(Produto produto);
     }
 }

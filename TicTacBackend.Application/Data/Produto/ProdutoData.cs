@@ -13,6 +13,6 @@ namespace TicTacBackend.Application.Data.Produto
         public string Descricao { get; set; }
         public string Nome { get; set; }
         public decimal Valor { get; set; }
-        public List<SubProduto> SubProdutos { get; set; }
+        public List<SubProdutoData> SubProdutos { get; set; }
     }
 }

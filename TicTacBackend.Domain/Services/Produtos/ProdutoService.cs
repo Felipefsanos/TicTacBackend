@@ -1,5 +1,5 @@
-﻿using TicTacBackend.Domain.Commands.Produto;
-using TicTacBackend.Domain.Entities.Produtos;
+﻿using TicTacBackend.Domain.Entities.Produtos;
+using TicTacBackend.Domain.Repositories.Base;
 using TicTacBackend.Domain.Repositories.Produto;
 using TicTacBackend.Domain.Services.Interfaces.Produtos;
 using TicTacBackend.Infra.Helpers.Exceptions;
@@ -10,27 +10,34 @@ namespace TicTacBackend.Domain.Services.Produtos
     public class ProdutoService : IProdutoService
     {
         private readonly IProdutoRepository produtoRepository;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly ISubProdutoRepository subProdutoRepository;
 
-        public ProdutoService(IProdutoRepository produtoRepository)
+        public ProdutoService(
+            IProdutoRepository produtoRepository,
+            IUnitOfWork unitOfWork,
+            ISubProdutoRepository subProdutoRepository)
         {
             this.produtoRepository = produtoRepository;
+            this.unitOfWork = unitOfWork;
+            this.subProdutoRepository = subProdutoRepository;
         }
 
-        public void AtualizarProduto(ProdutoCommand atualizaProdutoCommand)
+        public void AtualizarProduto(Produto produto)
         {
-            var produto = produtoRepository.ObterUm(p => p.Id == atualizaProdutoCommand.Id);
+            var produtoId = produtoRepository.ObterUm(p => p.Id == produto.Id);
 
-            ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(produto is null, "Produtos não encontrado.");
+            ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(produtoId is null, "Produtos não encontrado.");
 
-            produto.Atualizar(atualizaProdutoCommand);
+            produto.Atualizar(produtoId);
 
             produtoRepository.Atualizar(produto);
         }
 
-        public void CriarProduto(ProdutoCommand novoProdutoCommand)
+        public void CriarProduto(Produto produto)
         {
-            var produto = new Entities.Produtos.Produto(novoProdutoCommand);
-            produtoRepository.Adicionar(produto);
+            Produto produtosValidos = new Entities.Produtos.Produto(produto);
+            produtoRepository.Adicionar(produtosValidos);
         }
     }
 }
