@@ -71,7 +71,7 @@ namespace TicTacBackend.Domain.Entities.Clientes
             }
         }
 
-        private void ValidarInformacoesObrigatorias(ClienteCommand clienteCommand, int quantidadeContatos)
+        private static void ValidarInformacoesObrigatorias(ClienteCommand clienteCommand, int quantidadeContatos)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(clienteCommand.Nome.IsNullOrWhiteSpace(), "Nome do cliente não pode ser vazio ou nulo.");
             ValidacaoLogica.IsFalse<ValidacaoException>(quantidadeContatos >= 1, "É obrigatório no mínimo um contato do cliente.");

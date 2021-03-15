@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TicTacBackend.Domain.Commands.Clientes.Atualiza;
 using TicTacBackend.Domain.Commands.Clientes.Novo;
 using TicTacBackend.Domain.Entities.Base;
+using TicTacBackend.Domain.Entities.Prestadores;
 using TicTacBackend.Infra.Helpers.Exceptions;
 using TicTacBackend.Infra.Helpers.Extension.Methods;
 using TicTacBackend.Infra.Helpers.Validation;
@@ -21,8 +22,10 @@ namespace TicTacBackend.Domain.Entities.Clientes
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
-        public long ClienteId { get; set; }
+        public long? ClienteId { get; set; }
         public Cliente Cliente { get; set; }
+        public long? PrestadorId { get; set; }
+        public Prestador Prestador { get; set; }
 
         public Endereco()
         {
@@ -55,7 +58,7 @@ namespace TicTacBackend.Domain.Entities.Clientes
             Estado = endereco.Estado;
         }
 
-        private void ValidarInformacoesObrigatorias(NovoEnderecoCommand endereco)
+        private static void ValidarInformacoesObrigatorias(NovoEnderecoCommand endereco)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(endereco.Logradouro.IsNullOrWhiteSpace(), "Logradouro é uma informação obrigatória.");
             ValidacaoLogica.IsTrue<ValidacaoException>(endereco.Estado.ToString().IsNullOrWhiteSpace(), "Estado é uma informação obrigatória.");
@@ -65,7 +68,7 @@ namespace TicTacBackend.Domain.Entities.Clientes
             ValidacaoLogica.IsTrue<ValidacaoException>(endereco.CEP <= 0, "CEP é uma informação obrigatória.");
         }
 
-        private void ValidarInformacoesObrigatorias(AtualizaEnderecoCommand endereco)
+        private static void ValidarInformacoesObrigatorias(AtualizaEnderecoCommand endereco)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(endereco.Logradouro.IsNullOrWhiteSpace(), "Logradouro é uma informação obrigatória.");
             ValidacaoLogica.IsTrue<ValidacaoException>(endereco.Estado.ToString().IsNullOrWhiteSpace(), "Estado é uma informação obrigatória.");

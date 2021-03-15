@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TicTacBackend.Domain.Entities.Monitor
+namespace TicTacBackend.Domain.Commands.Prestadores
 {
-    class Monitor
+    public class PrestadorCommand
     {
+        public string Nome { get; set; }
     }
 }

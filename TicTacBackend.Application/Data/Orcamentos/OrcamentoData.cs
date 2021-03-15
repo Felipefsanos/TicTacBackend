@@ -1,4 +1,5 @@
 ﻿using System;
+using TicTacBackend.Application.Data.Clientes;
 using static TicTacBackend.Domain.Entities.Orcamentos.Orcamento;
 
 namespace TicTacBackend.Application.Data.Orcamentos
@@ -14,5 +15,6 @@ namespace TicTacBackend.Application.Data.Orcamentos
         public bool BuffetPrincipal { get; set; }
         public string Observacao { get; set; }
         public decimal Valor { get; set; }
+        public ClienteData Cliente { get; set; }
     }
 }
