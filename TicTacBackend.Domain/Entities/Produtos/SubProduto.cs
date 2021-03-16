@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TicTacBackend.Domain.Commands.Produto;
+using TicTacBackend.Domain.Commands.Produto.Novo;
 using TicTacBackend.Domain.Entities.Base;
 using TicTacBackend.Infra.Helpers.Exceptions;
 using TicTacBackend.Infra.Helpers.Validation;
@@ -11,7 +13,7 @@ namespace TicTacBackend.Domain.Entities.Produtos
         public string Descricao { get; set; }
         public string Nome { get; set; }
         public List<Produto> Produtos { get; set; }
-        public long ProdutoId { get; set; }
+        public long Quantidade { get; set; }
 
         public SubProduto()
         {
@@ -38,6 +40,25 @@ namespace TicTacBackend.Domain.Entities.Produtos
                 }
             }
             
+        }
+
+        public SubProduto(NovoSubProdutoCommand novoSubProdutoCommand)
+        {
+            ValidarInformacoesObrigatorias(novoSubProdutoCommand);
+
+            AtribuirValores(novoSubProdutoCommand);
+        }
+
+        private void ValidarInformacoesObrigatorias(SubProdutoCommand subProdutoCommand)
+        {
+            ValidacaoLogica.IsTrue<ValidacaoException>(subProdutoCommand.Nome.IsNullOrWhiteSpace(), "Nome do Subproduto não pode ser vazio ou nulo.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(subProdutoCommand.Descricao.IsNullOrWhiteSpace(), "Descrição do Subproduto não pode ser vazio ou nulo.");
+        }
+        private void AtribuirValores(SubProdutoCommand novoSubProdutoCommand)
+        {
+            Nome = novoSubProdutoCommand.Nome;
+            Descricao = novoSubProdutoCommand.Descricao;
+
         }
 
         internal void Atualizar(SubProduto atualizaSubProdutoCommand)

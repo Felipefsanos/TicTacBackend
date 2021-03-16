@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data.Produto;
 using TicTacBackend.Domain.Commands.Produto;
+using TicTacBackend.Domain.Commands.Produto.Atualiza;
+using TicTacBackend.Domain.Commands.Produto.Novo;
 using TicTacBackend.Domain.Entities.Produtos;
 
 namespace TicTacBackend.Controllers
@@ -23,7 +25,7 @@ namespace TicTacBackend.Controllers
         [HttpGet]
         public IEnumerable<ProdutoData> ObterProdutos()
         {
-            return produtoAppService.ObterTodosProdutos(); 
+            return produtoAppService.ObterTodosProdutos();
         }
 
         [HttpGet("{id}")]
@@ -36,7 +38,13 @@ namespace TicTacBackend.Controllers
         public void CriarProduto(ProdutoCommand CriarprodutoCommand)
         {
             var produto = mapper.Map<ProdutoCommand, Produto>(CriarprodutoCommand);
-            produtoAppService.CriarProduto(produto); 
+            produtoAppService.CriarProduto(produto);
+        }
+
+        [HttpPost("criar")]
+        public void CriarProdutoTeste(NovoProdutoCommand criarprodutoCommand)
+        {
+            produtoAppService.CriarProdutoTeste(criarprodutoCommand);
         }
 
         [HttpDelete("{id}")]
@@ -46,11 +54,10 @@ namespace TicTacBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public void AtualizarProduto(long id, ProdutoCommand atualizaProdutoCommand)
+        public void AtualizarProduto(long id, AtualizaProdutoCommand atualizaProdutoCommand)
         {
             atualizaProdutoCommand.Id = id;
-            var produto = mapper.Map<ProdutoCommand, Produto>(atualizaProdutoCommand);
-            produtoAppService.AtualizarProduto(produto);
+            produtoAppService.AtualizarProduto(atualizaProdutoCommand);
         }
     }
 }

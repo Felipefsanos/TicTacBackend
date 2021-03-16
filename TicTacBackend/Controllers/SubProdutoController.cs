@@ -49,7 +49,7 @@ namespace TicTacBackend.Controllers
         [HttpPut("{id}")]
         public void AtualizarProduto(long id, SubProdutoCommand atualizaSubProdutoCommand)
         {
-            atualizaSubProdutoCommand.Id = id;
+            //atualizaSubProdutoCommand.Id = id;
             var atualizaSubProduto = mapper.Map<SubProdutoCommand, SubProduto>(atualizaSubProdutoCommand);
             subProdutoAppService.AtualizarSubProduto(atualizaSubProduto);
         }

@@ -1,4 +1,7 @@
-﻿using TicTacBackend.Domain.Entities.Produtos;
+﻿using System.Collections.Generic;
+using TicTacBackend.Domain.Commands.Produto.Atualiza;
+using TicTacBackend.Domain.Commands.Produto.Novo;
+using TicTacBackend.Domain.Entities.Produtos;
 using TicTacBackend.Domain.Repositories.Base;
 using TicTacBackend.Domain.Repositories.Produto;
 using TicTacBackend.Domain.Services.Interfaces.Produtos;
@@ -10,26 +13,36 @@ namespace TicTacBackend.Domain.Services.Produtos
     public class ProdutoService : IProdutoService
     {
         private readonly IProdutoRepository produtoRepository;
-        private readonly IUnitOfWork unitOfWork;
         private readonly ISubProdutoRepository subProdutoRepository;
 
         public ProdutoService(
             IProdutoRepository produtoRepository,
-            IUnitOfWork unitOfWork,
             ISubProdutoRepository subProdutoRepository)
         {
             this.produtoRepository = produtoRepository;
-            this.unitOfWork = unitOfWork;
             this.subProdutoRepository = subProdutoRepository;
         }
 
-        public void AtualizarProduto(Produto produto)
+        public void AtualizarProduto(AtualizaProdutoCommand atualizaProdutoCommand)
         {
-            var produtoId = produtoRepository.ObterUm(p => p.Id == produto.Id);
+            ValidacaoLogica.IsTrue<ValidacaoException>(atualizaProdutoCommand is null, "Comando de atualizar produto não pode ser nulo.");
 
-            ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(produtoId is null, "Produtos não encontrado.");
+            var produto = produtoRepository.ObterUm(p => p.Id == atualizaProdutoCommand.Id, "SubProdutos");
 
-            produto.Atualizar(produtoId);
+            ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(produto is null, "Produtos não encontrado.");
+
+            List<SubProduto> novosSubProdutos = new List<SubProduto>();
+
+            foreach (var subProdutoCommand in atualizaProdutoCommand.SubProdutos)
+            {
+                var subProduto = subProdutoRepository.ObterUm(s => s.Id == subProdutoCommand.Id);
+
+                ValidacaoLogica.IsTrue<ValidacaoException>(subProduto is null, $"Sub Produto não encontrado. Id {subProdutoCommand.Id}");
+
+                novosSubProdutos.Add(subProduto);
+            }
+
+            produto.Atualizar(atualizaProdutoCommand, novosSubProdutos);
 
             produtoRepository.Atualizar(produto);
         }
@@ -38,6 +51,15 @@ namespace TicTacBackend.Domain.Services.Produtos
         {
             Produto produtosValidos = new Entities.Produtos.Produto(produto);
             produtoRepository.Adicionar(produtosValidos);
+        }
+
+        public void CriarProdutoTeste(NovoProdutoCommand novoProdutoCommand)
+        {
+            ValidacaoLogica.IsTrue<ValidacaoException>(novoProdutoCommand is null, "Comando de criar produto não pode ser nulo.");
+
+            var produto = new Produto(novoProdutoCommand);
+
+            produtoRepository.Adicionar(produto);
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data.Produto;
 using TicTacBackend.Domain.Commands.Produto;
+using TicTacBackend.Domain.Commands.Produto.Atualiza;
+using TicTacBackend.Domain.Commands.Produto.Novo;
 using TicTacBackend.Domain.Entities.Produtos;
 using TicTacBackend.Domain.Repositories.Base;
 using TicTacBackend.Domain.Repositories.Produto;
@@ -31,15 +33,21 @@ namespace TicTacBackend.Application.AppServices
             this.produtoService = produtoService;
         }
 
-        public void AtualizarProduto(Produto produto)
+        public void AtualizarProduto(AtualizaProdutoCommand atualizaProdutoCommand)
         {
-            produtoService.AtualizarProduto(produto);
+            produtoService.AtualizarProduto(atualizaProdutoCommand);
             unitOfWork.SaveChanges();
         }
 
         public void CriarProduto(Produto produto)
         {
             produtoService.CriarProduto(produto);
+            unitOfWork.SaveChanges();
+        }
+
+        public void CriarProdutoTeste(NovoProdutoCommand novoProdutoCommand)
+        {
+            produtoService.CriarProdutoTeste(novoProdutoCommand);
             unitOfWork.SaveChanges();
         }
 

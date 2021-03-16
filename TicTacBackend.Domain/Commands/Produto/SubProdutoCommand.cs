@@ -9,10 +9,7 @@ namespace TicTacBackend.Domain.Commands.Produto
 {
    public class SubProdutoCommand
     {
-        public long Id { get; set; }
         public string Descricao { get; set; }
         public string Nome { get; set; }
-        public List<TicTacBackend.Domain.Entities.Produtos.Produto>  Produto{ get; set; }
     }
-   
 }
