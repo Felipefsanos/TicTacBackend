@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data.Produto;
 using TicTacBackend.Domain.Commands.Produto;
+using TicTacBackend.Domain.Commands.Produto.Atualiza;
+using TicTacBackend.Domain.Commands.Produto.Novo;
 using TicTacBackend.Domain.Entities.Produtos;
 
 namespace TicTacBackend.Controllers
@@ -22,9 +24,9 @@ namespace TicTacBackend.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<SubProdutoData> ObterSubProdutos()
+        public IEnumerable<SubProdutoData> ObterSubProdutos(bool? relacionados = null)
         {
-            return subProdutoAppService.ObterTodosSubProdutos();
+            return subProdutoAppService.ObterTodosSubProdutos(relacionados);
         }
 
         [HttpGet("{id}")]
@@ -34,10 +36,9 @@ namespace TicTacBackend.Controllers
         }
 
         [HttpPost]
-        public void CriarProduto(SubProdutoCommand CriarSubprodutoCommand)
+        public void CriarProduto(NovoSubProdutoCommand criarSubprodutoCommand)
         {
-            var CriarSubproduto = mapper.Map<SubProdutoCommand, SubProduto>(CriarSubprodutoCommand);
-            subProdutoAppService.CriarSubProduto(CriarSubproduto);
+            subProdutoAppService.CriarSubProduto(criarSubprodutoCommand);
         }
 
         [HttpDelete("{id}")]
@@ -47,11 +48,10 @@ namespace TicTacBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public void AtualizarProduto(long id, SubProdutoCommand atualizaSubProdutoCommand)
+        public void AtualizarProduto(long id, AtualizaSubProdutoCommand atualizaSubProdutoCommand)
         {
-            //atualizaSubProdutoCommand.Id = id;
-            var atualizaSubProduto = mapper.Map<SubProdutoCommand, SubProduto>(atualizaSubProdutoCommand);
-            subProdutoAppService.AtualizarSubProduto(atualizaSubProduto);
+            atualizaSubProdutoCommand.Id = id;
+            subProdutoAppService.AtualizarSubProduto(atualizaSubProdutoCommand);
         }
     }
 }

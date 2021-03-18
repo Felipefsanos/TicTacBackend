@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
+using System.Linq;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data.Produto;
 using TicTacBackend.Domain.Commands.Produto;
+using TicTacBackend.Domain.Commands.Produto.Atualiza;
+using TicTacBackend.Domain.Commands.Produto.Novo;
 using TicTacBackend.Domain.Entities.Produtos;
 using TicTacBackend.Domain.Repositories.Base;
 using TicTacBackend.Domain.Repositories.Produto;
@@ -31,15 +34,15 @@ namespace TicTacBackend.Application.AppServices
             this.subProdutoService = subProdutoService;
         }
 
-        public void AtualizarSubProduto(SubProduto atualizaSubProduto)
+        public void AtualizarSubProduto(AtualizaSubProdutoCommand atualizaSubProdutoCommand)
         {
-            subProdutoService.AtualizarSubProduto(atualizaSubProduto);
+            subProdutoService.AtualizarSubProduto(atualizaSubProdutoCommand);
             unitOfWork.SaveChanges();
         }
 
-        public void CriarSubProduto(SubProduto novoSubProduto)
+        public void CriarSubProduto(NovoSubProdutoCommand criarSubprodutoCommand)
         {
-            subProdutoService.CriarSubProduto(novoSubProduto);
+            subProdutoService.CriarSubProduto(criarSubprodutoCommand);
             unitOfWork.SaveChanges();
         }
 
@@ -49,10 +52,16 @@ namespace TicTacBackend.Application.AppServices
             return mapper.Map<SubProduto, SubProdutoData>(subProduto);
         }
 
-        public IEnumerable<SubProdutoData> ObterTodosSubProdutos()
+        public IEnumerable<SubProdutoData> ObterTodosSubProdutos(bool? relacionados)
         {
             var SubProdutos = subProdutoRepository.ObterTodos();
-            return mapper.Map<IEnumerable<SubProduto>, IEnumerable<SubProdutoData>>(SubProdutos);
+
+            if (!relacionados.HasValue)
+                return mapper.Map<IEnumerable<SubProduto>, IEnumerable<SubProdutoData>>(SubProdutos);
+            else if (relacionados.GetValueOrDefault() == true)
+                return mapper.Map<IEnumerable<SubProduto>, IEnumerable<SubProdutoData>>(SubProdutos.Where(s => s.Produtos.Any()));
+            else
+                return mapper.Map<IEnumerable<SubProduto>, IEnumerable<SubProdutoData>>(SubProdutos.Where(s => !s.Produtos.Any()));
         }
 
         public void RemoverSubProduto(long id)

@@ -11,9 +11,8 @@ namespace TicTacBackend.Application.AppServices.Interfaces
     {
         IEnumerable<ProdutoData> ObterTodosProdutos();
         ProdutoData ObterProduto(long id);
-        void CriarProduto(Produto produto);
         void RemoverProduto(long id);
         void AtualizarProduto(AtualizaProdutoCommand produto);
-        void CriarProdutoTeste(NovoProdutoCommand criarprodutoCommand);
+        void CriarProduto(NovoProdutoCommand criarprodutoCommand);
     }
 }

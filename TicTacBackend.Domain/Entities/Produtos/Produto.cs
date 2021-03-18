@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicTacBackend.Domain.Commands.Produto;
 using TicTacBackend.Domain.Commands.Produto.Atualiza;
 using TicTacBackend.Domain.Commands.Produto.Novo;
@@ -23,25 +20,6 @@ namespace TicTacBackend.Domain.Entities.Produtos
         public Produto()
         {
 
-        }
-
-        public Produto(Produto produto)
-        {
-            ValidacaoLogica.IsTrue<ValidacaoException>(produto is null, "Comando de novo produto não pode ser nulo.");
-
-            ValidarInformacoesObrigatorias(produto);
-
-            AtribuirValores(produto);
-
-            SubProdutos = new List<SubProduto>();
-
-            if(produto.SubProdutos != null)
-            {
-                foreach (var sub in produto.SubProdutos)
-                {
-                    SubProdutos.Add(sub);
-                }
-            }
         }
 
         public Produto(NovoProdutoCommand novoProdutoCommand)
@@ -84,19 +62,6 @@ namespace TicTacBackend.Domain.Entities.Produtos
             SubProdutos.Clear();
 
             SubProdutos.AddRange(novosSubProdutos);
-        }
-
-        private void ValidarInformacoesObrigatorias(Produto produto)
-        {
-            ValidacaoLogica.IsTrue<ValidacaoException>(produto.Nome.IsNullOrWhiteSpace(), "Nome do produto não pode ser vazio ou nulo.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(produto.Descricao.IsNullOrWhiteSpace(), "Nome do produto não pode ser vazio ou nulo.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(produto.Valor <= 0, "Valor do produto não pode ser vazio ou nulo.");
-        }
-        private void AtribuirValores(Produto produto)
-        {
-            Nome = produto.Nome;
-            Valor = produto.Valor;
-            Descricao = produto.Descricao;
         }
     }
 

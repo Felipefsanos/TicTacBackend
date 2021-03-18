@@ -47,13 +47,7 @@ namespace TicTacBackend.Domain.Services.Produtos
             produtoRepository.Atualizar(produto);
         }
 
-        public void CriarProduto(Produto produto)
-        {
-            Produto produtosValidos = new Entities.Produtos.Produto(produto);
-            produtoRepository.Adicionar(produtosValidos);
-        }
-
-        public void CriarProdutoTeste(NovoProdutoCommand novoProdutoCommand)
+        public void CriarProduto(NovoProdutoCommand novoProdutoCommand)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(novoProdutoCommand is null, "Comando de criar produto não pode ser nulo.");
 

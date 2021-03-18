@@ -35,16 +35,9 @@ namespace TicTacBackend.Controllers
         }
 
         [HttpPost]
-        public void CriarProduto(ProdutoCommand CriarprodutoCommand)
-        {
-            var produto = mapper.Map<ProdutoCommand, Produto>(CriarprodutoCommand);
-            produtoAppService.CriarProduto(produto);
-        }
-
-        [HttpPost("criar")]
         public void CriarProdutoTeste(NovoProdutoCommand criarprodutoCommand)
         {
-            produtoAppService.CriarProdutoTeste(criarprodutoCommand);
+            produtoAppService.CriarProduto(criarprodutoCommand);
         }
 
         [HttpDelete("{id}")]

@@ -39,15 +39,9 @@ namespace TicTacBackend.Application.AppServices
             unitOfWork.SaveChanges();
         }
 
-        public void CriarProduto(Produto produto)
+        public void CriarProduto(NovoProdutoCommand novoProdutoCommand)
         {
-            produtoService.CriarProduto(produto);
-            unitOfWork.SaveChanges();
-        }
-
-        public void CriarProdutoTeste(NovoProdutoCommand novoProdutoCommand)
-        {
-            produtoService.CriarProdutoTeste(novoProdutoCommand);
+            produtoService.CriarProduto(novoProdutoCommand);
             unitOfWork.SaveChanges();
         }
 

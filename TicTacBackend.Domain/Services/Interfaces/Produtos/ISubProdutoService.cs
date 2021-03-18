@@ -1,10 +1,11 @@
-﻿using TicTacBackend.Domain.Entities.Produtos;
+﻿using TicTacBackend.Domain.Commands.Produto.Atualiza;
+using TicTacBackend.Domain.Commands.Produto.Novo;
 
 namespace TicTacBackend.Domain.Services.Interfaces.Produtos
 {
     public interface ISubProdutoService
     {
-        void CriarSubProduto(SubProduto novoSubProduto);
-        void AtualizarSubProduto(SubProduto atualizaSubProduto);
+        void CriarSubProduto(NovoSubProdutoCommand criarSubprodutoCommand);
+        void AtualizarSubProduto(AtualizaSubProdutoCommand atualizaSubProdutoCommand);
     }
 }

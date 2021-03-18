@@ -50,13 +50,8 @@ namespace TicTacBackend.Domain.Entities.Prestadores
 
             Endereco.Atualizar(atualizaPrestadorCommand.Endereco);
 
-            foreach (var contato in atualizaPrestadorCommand.Contatos)
-            {
-                if (!Contatos.Any(c => c.Id == contato.Id))
-                    Contatos.Add(new Contato(contato));
-                else
-                    Contatos.First(c => c.Id == contato.Id).Atualizar(contato);
-            }
+            for (int i = 0; i < Contatos.Count; i++)
+                Contatos[i].Atualizar(atualizaPrestadorCommand.Contatos[i]);
 
             Nome = atualizaPrestadorCommand.Nome;
         }
