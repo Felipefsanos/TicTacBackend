@@ -2,7 +2,7 @@
 
 namespace TicTacBackend.Domain.Repositories.Produto
 {
-    public interface ISubProdutoRepository : IRepository<Entities.Produtos.SubProduto>
+    public interface IComponenteRepository : IRepository<Entities.Produtos.Componente>
     {
     }
 }

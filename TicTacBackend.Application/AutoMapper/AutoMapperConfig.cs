@@ -46,15 +46,15 @@ namespace TicTacBackend.Application.AutoMapper
             config.CreateMap<Produto, ProdutoData>();
             config.CreateMap<ProdutoData, Produto>();
 
-            config.CreateMap<SubProduto, SubProdutoData>();
-            config.CreateMap<SubProduto, SubProdutoData>();
+            config.CreateMap<Componente, ComponenteData>();
+            config.CreateMap<ComponenteData, Componente > ();
 
             config.CreateMap<ProdutoCommand, Produto>();
             config.CreateMap<Produto, ProdutoCommand>();
 
 
-            config.CreateMap<SubProdutoCommand, SubProduto>();
-            config.CreateMap<SubProduto, SubProdutoCommand>();
+            config.CreateMap<ComponenteCommand, Componente>();
+            config.CreateMap<Componente, ComponenteCommand>();
 
 
 

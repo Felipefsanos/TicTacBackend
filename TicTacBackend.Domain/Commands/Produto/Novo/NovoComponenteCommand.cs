@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacBackend.Domain.Commands.Produto.Novo
 {
-    public class NovoSubProdutoCommand : SubProdutoCommand
+    public class NovoComponenteCommand : ComponenteCommand
     {
     }
 }

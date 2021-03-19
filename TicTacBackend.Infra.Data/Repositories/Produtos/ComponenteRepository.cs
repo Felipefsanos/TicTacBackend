@@ -10,9 +10,9 @@ using TicTacBackend.Infra.Data.Repositories.Base;
 
 namespace TicTacBackend.Infra.Data.Repositories.Produtos
 {
-    public class SubProdutoRepository : RepositoryBase<SubProduto>, ISubProdutoRepository
+    public class ComponenteRepository : RepositoryBase<Componente>, IComponenteRepository
     {
-        public SubProdutoRepository(DataBaseContext context) : base(context)
+        public ComponenteRepository(DataBaseContext context) : base(context)
         {
         }
     }

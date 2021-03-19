@@ -12,7 +12,7 @@ namespace TicTacBackend.Application.AppServices.Interfaces
         IEnumerable<ProdutoData> ObterTodosProdutos();
         ProdutoData ObterProduto(long id);
         void RemoverProduto(long id);
-        void AtualizarProduto(AtualizaProdutoCommand produto);
+        void AtualizarProduto(componenteCommand produto);
         void CriarProduto(NovoProdutoCommand criarprodutoCommand);
     }
 }

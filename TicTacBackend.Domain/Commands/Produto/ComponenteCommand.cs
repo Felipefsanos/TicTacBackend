@@ -7,7 +7,7 @@ using TicTacBackend.Domain.Entities.Produtos;
 
 namespace TicTacBackend.Domain.Commands.Produto
 {
-   public class SubProdutoCommand
+   public class ComponenteCommand
     {
         public string Descricao { get; set; }
         public string Nome { get; set; }

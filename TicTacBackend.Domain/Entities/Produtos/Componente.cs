@@ -9,26 +9,26 @@ using TicTacBackend.Infra.Helpers.Validation;
 
 namespace TicTacBackend.Domain.Entities.Produtos
 {
-    public class SubProduto : EntidadeBase
+    public class Componente : EntidadeBase
     {
         public string Descricao { get; set; }
         public string Nome { get; set; }
         public List<Produto> Produtos { get; set; }
         public long Quantidade { get; set; }
 
-        public SubProduto()
+        public Componente()
         {
 
         }
 
-        public SubProduto(NovoSubProdutoCommand novoSubProdutoCommand)
+        public Componente(NovoComponenteCommand novoSubProdutoCommand)
         {
             ValidarInformacoesObrigatorias(novoSubProdutoCommand);
 
             AtribuirValores(novoSubProdutoCommand);
         }
 
-        internal void Atualizar(AtualizaSubProdutoCommand atualizaSubProdutoCommand)
+        internal void Atualizar(AtualizacomponenteCommand atualizaSubProdutoCommand)
         {
 
             ValidarInformacoesObrigatorias(atualizaSubProdutoCommand);
@@ -36,12 +36,12 @@ namespace TicTacBackend.Domain.Entities.Produtos
             AtribuirValores(atualizaSubProdutoCommand);
         }
 
-        private static void ValidarInformacoesObrigatorias(SubProdutoCommand subProdutoCommand)
+        private static void ValidarInformacoesObrigatorias(ComponenteCommand subProdutoCommand)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(subProdutoCommand.Nome.IsNullOrWhiteSpace(), "Nome do Subproduto não pode ser vazio ou nulo.");
             ValidacaoLogica.IsTrue<ValidacaoException>(subProdutoCommand.Descricao.IsNullOrWhiteSpace(), "Descrição do Subproduto não pode ser vazio ou nulo.");
         }
-        private void AtribuirValores(SubProdutoCommand novoSubProdutoCommand)
+        private void AtribuirValores(ComponenteCommand novoSubProdutoCommand)
         {
             Nome = novoSubProdutoCommand.Nome;
             Descricao = novoSubProdutoCommand.Descricao;
