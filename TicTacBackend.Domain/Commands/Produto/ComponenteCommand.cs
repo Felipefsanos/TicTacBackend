@@ -11,5 +11,6 @@ namespace TicTacBackend.Domain.Commands.Produto
     {
         public string Descricao { get; set; }
         public string Nome { get; set; }
+        public int  Quantidade { get; set; }
     }
 }

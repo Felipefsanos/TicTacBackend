@@ -30,7 +30,7 @@ namespace TicTacBackend.Controllers
         }
 
         [HttpGet("{id}")]
-        public ComponenteData ObterSubProduto(long id)
+        public ComponenteData ObterComponente(long id)
         {
             return componenteAppService.ObterComponente(id);
         }

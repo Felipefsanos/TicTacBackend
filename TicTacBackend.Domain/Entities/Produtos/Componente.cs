@@ -45,6 +45,7 @@ namespace TicTacBackend.Domain.Entities.Produtos
         {
             Nome = novoSubProdutoCommand.Nome;
             Descricao = novoSubProdutoCommand.Descricao;
+            Quantidade = novoSubProdutoCommand.Quantidade;
         }
     }
 

@@ -24,11 +24,13 @@ namespace TicTacBackend.Application.AppServices
 
         public ComponenteAppService(IMapper mapper,
                                  IUnitOfWork unitOfWork,
-                                 IComponenteRepository componenteRepository)
+                                 IComponenteRepository componenteRepository, 
+                                 IComponenteService componenteService)
         {
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
             this.componenteRepository = componenteRepository;
+            this.componenteService = componenteService;
         }
 
         public void AtualizarComponente(AtualizacomponenteCommand atualizaComponenteCommand)
