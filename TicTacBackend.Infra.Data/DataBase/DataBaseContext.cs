@@ -5,6 +5,7 @@ using TicTacBackend.Domain.Entities.Clientes;
 using TicTacBackend.Domain.Entities.Orcamentos;
 using TicTacBackend.Domain.Entities.Prestadores;
 using TicTacBackend.Domain.Entities.Produtos;
+using TicTacBackend.Domain.Entities.Servicos;
 
 namespace TicTacBackend.Infra.Data.DataBase
 {
@@ -20,6 +21,8 @@ namespace TicTacBackend.Infra.Data.DataBase
         public virtual DbSet<Produto> Produtos { get; set; }
         public virtual DbSet<SubProduto> SubProdutos { get; set; }
         public virtual DbSet<Prestador> Prestadores { get; set; }
+        public virtual DbSet<Servico> Servicos { get; set; }
+
 
 
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
