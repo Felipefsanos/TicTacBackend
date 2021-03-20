@@ -13,36 +13,36 @@ namespace TicTacBackend.Domain.Services.Produtos
     public class ProdutoService : IProdutoService
     {
         private readonly IProdutoRepository produtoRepository;
-        private readonly ISubProdutoRepository subProdutoRepository;
+        private readonly IComponenteRepository componenteRepository;
 
         public ProdutoService(
             IProdutoRepository produtoRepository,
-            ISubProdutoRepository subProdutoRepository)
+            IComponenteRepository componenteRepository)
         {
             this.produtoRepository = produtoRepository;
-            this.subProdutoRepository = subProdutoRepository;
+            this.componenteRepository = componenteRepository;
         }
 
-        public void AtualizarProduto(AtualizaProdutoCommand atualizaProdutoCommand)
+        public void AtualizarProduto(componenteCommand atualizaProdutoCommand)
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(atualizaProdutoCommand is null, "Comando de atualizar produto não pode ser nulo.");
 
-            var produto = produtoRepository.ObterUm(p => p.Id == atualizaProdutoCommand.Id, "SubProdutos");
+            var produto = produtoRepository.ObterUm(p => p.Id == atualizaProdutoCommand.Id, "Componentes");
 
             ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(produto is null, "Produtos não encontrado.");
 
-            List<SubProduto> novosSubProdutos = new List<SubProduto>();
+            List<Componente> novosComponetes = new List<Componente>();
 
-            foreach (var subProdutoCommand in atualizaProdutoCommand.SubProdutos)
+            foreach (var subProdutoCommand in atualizaProdutoCommand.Componentes)
             {
-                var subProduto = subProdutoRepository.ObterUm(s => s.Id == subProdutoCommand.Id);
+                var subProduto = componenteRepository.ObterUm(s => s.Id == subProdutoCommand.Id);
 
                 ValidacaoLogica.IsTrue<ValidacaoException>(subProduto is null, $"Sub Produto não encontrado. Id {subProdutoCommand.Id}");
 
-                novosSubProdutos.Add(subProduto);
+                novosComponetes.Add(subProduto);
             }
 
-            produto.Atualizar(atualizaProdutoCommand, novosSubProdutos);
+            produto.Atualizar(atualizaProdutoCommand, novosComponetes);
 
             produtoRepository.Atualizar(produto);
         }

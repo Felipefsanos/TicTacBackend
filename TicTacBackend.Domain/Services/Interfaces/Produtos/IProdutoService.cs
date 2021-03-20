@@ -12,7 +12,7 @@ namespace TicTacBackend.Domain.Services.Interfaces.Produtos
 {
     public interface IProdutoService
     {
-        void AtualizarProduto(AtualizaProdutoCommand atualizaProdutoCommand);
+        void AtualizarProduto(componenteCommand atualizaProdutoCommand);
         void CriarProduto(NovoProdutoCommand novoProdutoCommand);
     }
 }

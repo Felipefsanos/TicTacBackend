@@ -19,7 +19,7 @@ namespace TicTacBackend.Infra.Data.DataBase
         public virtual DbSet<Orcamento> Orcamentos { get; set; }
         public virtual DbSet<Local> Locais { get; set; }
         public virtual DbSet<Produto> Produtos { get; set; }
-        public virtual DbSet<SubProduto> SubProdutos { get; set; }
+        public virtual DbSet<Componente> Componentes { get; set; }
         public virtual DbSet<Prestador> Prestadores { get; set; }
         public virtual DbSet<Servico> Servicos { get; set; }
 

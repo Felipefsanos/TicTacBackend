@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacBackend.Domain.Commands.Produto.Atualiza
 {
-    public class AtualizaSubProdutoCommand : SubProdutoCommand
+    public class AtualizacomponenteCommand : ComponenteCommand
     {
         public long Id { get; set; }
     }

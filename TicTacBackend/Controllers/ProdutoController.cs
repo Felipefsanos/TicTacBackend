@@ -47,7 +47,7 @@ namespace TicTacBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public void AtualizarProduto(long id, AtualizaProdutoCommand atualizaProdutoCommand)
+        public void AtualizarProduto(long id, componenteCommand atualizaProdutoCommand)
         {
             atualizaProdutoCommand.Id = id;
             produtoAppService.AtualizarProduto(atualizaProdutoCommand);

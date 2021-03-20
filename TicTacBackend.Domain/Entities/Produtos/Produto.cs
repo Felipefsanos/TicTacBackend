@@ -14,7 +14,7 @@ namespace TicTacBackend.Domain.Entities.Produtos
         public string Descricao { get; set; }
         public string Nome { get; set; }
         public decimal Valor { get; set; }
-        public List<SubProduto> SubProdutos { get; set; }
+        public List<Componente> Componentes { get; set; }
         public bool Disponivel { get; set; }
 
         public Produto()
@@ -28,13 +28,13 @@ namespace TicTacBackend.Domain.Entities.Produtos
 
             AtribuirValores(novoProdutoCommand);
 
-            SubProdutos = new List<SubProduto>();
+            Componentes = new List<Componente>();
 
-            if (novoProdutoCommand.SubProdutos != null && novoProdutoCommand.SubProdutos.Any())
+            if (novoProdutoCommand.Componente != null && novoProdutoCommand.Componente.Any())
             {
-                foreach (var sub in novoProdutoCommand.SubProdutos)
+                foreach (var sub in novoProdutoCommand.Componente)
                 {
-                    SubProdutos.Add(new SubProduto(sub));
+                    Componentes.Add(new Componente(sub));
                 }
             }
         }
@@ -53,15 +53,15 @@ namespace TicTacBackend.Domain.Entities.Produtos
             Descricao = produtoCommand.Descricao;
         }
 
-        internal void Atualizar(AtualizaProdutoCommand atualizaProdutoCommand, List<SubProduto> novosSubProdutos)
+        internal void Atualizar(componenteCommand atualizaProdutoCommand, List<Componente> novoscomponente)
         {
             ValidarInformacoesObrigatorias(atualizaProdutoCommand);
 
             AtribuirValores(atualizaProdutoCommand);
 
-            SubProdutos.Clear();
+            Componentes.Clear();
 
-            SubProdutos.AddRange(novosSubProdutos);
+            Componentes.AddRange(novoscomponente);
         }
     }
 

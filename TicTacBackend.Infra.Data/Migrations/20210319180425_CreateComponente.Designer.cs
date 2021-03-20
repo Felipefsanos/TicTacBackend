@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicTacBackend.Infra.Data.DataBase;
 
 namespace TicTacBackend.Infra.Data.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210319180425_CreateComponente")]
+    partial class CreateComponente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -306,33 +308,6 @@ namespace TicTacBackend.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Produtos");
-                });
-
-            modelBuilder.Entity("TicTacBackend.Domain.Entities.Servicos.Servico", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Descricao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("Gas")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("NomeServico")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TipoCarrinho")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipoServico")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Servicos");
                 });
 
             modelBuilder.Entity("TicTacBackend.Domain.Entities.Usuario", b =>

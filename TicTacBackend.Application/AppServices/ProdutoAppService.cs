@@ -33,7 +33,7 @@ namespace TicTacBackend.Application.AppServices
             this.produtoService = produtoService;
         }
 
-        public void AtualizarProduto(AtualizaProdutoCommand atualizaProdutoCommand)
+        public void AtualizarProduto(componenteCommand atualizaProdutoCommand)
         {
             produtoService.AtualizarProduto(atualizaProdutoCommand);
             unitOfWork.SaveChanges();
@@ -47,13 +47,13 @@ namespace TicTacBackend.Application.AppServices
 
         public ProdutoData ObterProduto(long id)
         {
-            var produto = produtoRepository.ObterUm(p => p.Id == id,"SubProdutos");
+            var produto = produtoRepository.ObterUm(p => p.Id == id, "Componentes");
             return mapper.Map<Produto, ProdutoData>(produto);
         }
 
         public IEnumerable<ProdutoData> ObterTodosProdutos()
         {
-            var produtos = produtoRepository.ObterTodos("SubProdutos");
+            var produtos = produtoRepository.ObterTodos("Componentes");
             return mapper.Map<IEnumerable<Produto>, IEnumerable<ProdutoData>>(produtos);
         }
 
