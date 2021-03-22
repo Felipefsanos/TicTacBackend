@@ -11,7 +11,7 @@ namespace TicTacBackend.Domain.Commands.Servicos
     {
         public string NomeServico { get; set; }
         public string Descricao { get; set; }
-        public bool? Gas { get; set; }
+        public TiposAlimentacao? TipoAlimentacao { get; set; }
         public TipoCarrinhos TipoCarrinho { get; set; }
         public TipoServicos TipoServico { get; set; }
     }

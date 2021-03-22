@@ -16,7 +16,7 @@ namespace TicTacBackend.Domain.Entities.Servicos
     {
         public string NomeServico { get; set; }
         public string Descricao { get; set; }
-        public bool? Gas { get; set; }
+        public TiposAlimentacao? TipoAlimentacao { get; set; }
         public TipoCarrinhos TipoCarrinho { get; set; }
         public TipoServicos TipoServico { get; set; }
 
@@ -51,6 +51,12 @@ namespace TicTacBackend.Domain.Entities.Servicos
             Tradicional = 1,
             Vintage = 2
         }
+        public enum TiposAlimentacao
+        {
+            Nenhum = 0,
+            Eletrico = 1,
+            Gas = 2
+        }
 
         public Servico()
         {
@@ -75,7 +81,7 @@ namespace TicTacBackend.Domain.Entities.Servicos
         {
             NomeServico = servicoCommand.NomeServico;
             Descricao = servicoCommand.Descricao;
-            Gas = servicoCommand.Gas;
+            TipoAlimentacao = servicoCommand.TipoAlimentacao.HasValue ? servicoCommand.TipoAlimentacao.GetValueOrDefault() : TiposAlimentacao.Nenhum;
             TipoCarrinho = servicoCommand.TipoCarrinho;
             TipoServico = servicoCommand.TipoServico;
         }
