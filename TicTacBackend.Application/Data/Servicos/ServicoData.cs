@@ -7,7 +7,7 @@ namespace TicTacBackend.Application.Data.Servicos
         public long Id { get; set; }
         public string NomeServico { get; set; }
         public string Descricao { get; set; }
-        public bool? Gas { get; set; }
+        public TiposAlimentacao? TipoAlimentacao { get; set; }
         public TipoCarrinhos TipoCarrinho { get; set; }
         public TipoServicos TipoServico { get; set; }
     }
