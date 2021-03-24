@@ -35,11 +35,11 @@ namespace TicTacBackend.Domain.Services.Produtos
 
             foreach (var subProdutoCommand in atualizaProdutoCommand.Componentes)
             {
-                var subProduto = componenteRepository.ObterUm(s => s.Id == subProdutoCommand.Id);
+                var componente = componenteRepository.ObterUm(s => s.Id == subProdutoCommand.Id);
 
-                ValidacaoLogica.IsTrue<ValidacaoException>(subProduto is null, $"Sub Produto não encontrado. Id {subProdutoCommand.Id}");
+                ValidacaoLogica.IsTrue<ValidacaoException>(componente is null, $"Componete não encontrado. Id {componente.Id}");
 
-                novosComponetes.Add(subProduto);
+                novosComponetes.Add(componente);
             }
 
             produto.Atualizar(atualizaProdutoCommand, novosComponetes);
@@ -51,7 +51,17 @@ namespace TicTacBackend.Domain.Services.Produtos
         {
             ValidacaoLogica.IsTrue<ValidacaoException>(novoProdutoCommand is null, "Comando de criar produto não pode ser nulo.");
 
-            var produto = new Produto(novoProdutoCommand);
+            List<Componente> novosComponetes = new List<Componente>();
+
+            foreach (var ComponenteId in novoProdutoCommand.Componentes)
+            {
+                var componente = componenteRepository.ObterUm(s => s.Id == ComponenteId);
+
+                ValidacaoLogica.IsTrue<ValidacaoException>(componente is null, $"Componente não encontrado. Id {componente.Id}");
+
+                novosComponetes.Add(componente);
+            }
+            var produto = new Produto(novoProdutoCommand, novosComponetes);
 
             produtoRepository.Adicionar(produto);
         }

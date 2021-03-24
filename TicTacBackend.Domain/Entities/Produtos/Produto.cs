@@ -22,7 +22,7 @@ namespace TicTacBackend.Domain.Entities.Produtos
 
         }
 
-        public Produto(NovoProdutoCommand novoProdutoCommand)
+        public Produto(NovoProdutoCommand novoProdutoCommand, List<Componente> componentes)
         {
             ValidarInformacoesObrigatorias(novoProdutoCommand);
 
@@ -30,11 +30,11 @@ namespace TicTacBackend.Domain.Entities.Produtos
 
             Componentes = new List<Componente>();
 
-            if (novoProdutoCommand.Componente != null && novoProdutoCommand.Componente.Any())
+            if (componentes != null && componentes.Any())
             {
-                foreach (var sub in novoProdutoCommand.Componente)
+                foreach (var componente in componentes)
                 {
-                    Componentes.Add(new Componente(sub));
+                    Componentes.Add(componente);
                 }
             }
         }
