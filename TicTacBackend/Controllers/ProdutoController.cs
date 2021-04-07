@@ -35,7 +35,7 @@ namespace TicTacBackend.Controllers
         }
 
         [HttpPost]
-        public void CriarProdutoTeste(NovoProdutoCommand criarprodutoCommand)
+        public void CriarProduto(NovoProdutoCommand criarprodutoCommand)
         {
             produtoAppService.CriarProduto(criarprodutoCommand);
         }

@@ -8,6 +8,6 @@ namespace TicTacBackend.Domain.Commands.Produto.Novo
 {
     public class NovoProdutoCommand : ProdutoCommand
     {
-        public List<NovoComponenteCommand> Componente { get; set; }
+        public List<long> Componentes { get; set; }
     }
 }
