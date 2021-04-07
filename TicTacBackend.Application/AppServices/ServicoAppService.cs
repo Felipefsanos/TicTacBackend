@@ -40,7 +40,7 @@ namespace TicTacBackend.Application.AppServices
 
         public void CriarServico(NovoServicoCommand novoServicoCommand)
         {
-            servicoService.CriarServico(novoServicoCommand);
+            servicoService.CriarServico(novoServicoCommand);    
 
             unitOfWork.SaveChanges();
         }

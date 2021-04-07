@@ -33,7 +33,7 @@ namespace TicTacBackend.Domain.Entities.Servicos
             Crepe = 9,
             CaldosCanjica = 10,
             Pastelzinho = 11,
-            Macarrão = 12,
+            Macarrao = 12,
             Milho = 13,
             Saladinha = 14,
             Sorvete = 15,
