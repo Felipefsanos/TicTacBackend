@@ -70,7 +70,7 @@ namespace TicTacBackend.Application.AppServices
 
             ValidacaoLogica.IsTrue<ValidacaoException>(dataInicio > dataFim, "Data início não pode ser maior que a data fim.");
 
-            var orcamentos = orcamentoRepository.Obter(o => o.DataEvento >= dataInicio && o.DataEvento <= dataFim);
+            var orcamentos = orcamentoRepository.Obter(o => o.DataEvento >= dataInicio && o.DataEvento <= dataFim, "Cliente");
 
             return mapper.Map<IEnumerable<OrcamentoData>>(orcamentos);
         }
