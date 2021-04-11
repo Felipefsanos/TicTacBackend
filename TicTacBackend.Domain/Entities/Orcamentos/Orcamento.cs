@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using TicTacBackend.Domain.Commands.Orcamentos;
 using TicTacBackend.Domain.Commands.Orcamentos.Atualiza;
 using TicTacBackend.Domain.Commands.Orcamentos.Novo;
 using TicTacBackend.Domain.Entities.Base;
 using TicTacBackend.Domain.Entities.Clientes;
+using TicTacBackend.Domain.Entities.Produtos;
+using TicTacBackend.Domain.Entities.Servicos;
 using TicTacBackend.Infra.Helpers.Exceptions;
 using TicTacBackend.Infra.Helpers.Validation;
 
@@ -19,8 +22,11 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
         public bool BuffetPrincipal { get; set; }
         public string Observacao { get; set; }
         public decimal Valor { get; set; }
+        public decimal ValorFrete { get; set; }
         public long ClienteId { get; set; }
         public Cliente Cliente { get; set; }
+        public List<Produto> Produto { get; set; }
+        public List<Servico> Servico { get; set; }
 
         public enum TiposEvento
         {
@@ -41,11 +47,11 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
         {
             ValidarParametrosObrigatorios(novoOrcamentoCommand);
 
-            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.Local is null, "Local do evento é obrigatório.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.Endereco is null, "Local do evento é obrigatório.");
 
             AtribuirValores(novoOrcamentoCommand);
 
-            Local = new Local(novoOrcamentoCommand.Local);
+            Local = new Local(novoOrcamentoCommand.Endereco);
         }
 
         public void Alterar(AlteraOrcamentoCommand alterarOrcamentoCommand)

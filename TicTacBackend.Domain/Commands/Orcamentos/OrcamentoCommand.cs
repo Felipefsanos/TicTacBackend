@@ -12,5 +12,7 @@ namespace TicTacBackend.Domain.Commands.Orcamentos
         public bool BuffetPrincipal { get; set; }
         public string Observacao { get; set; }
         public decimal Valor { get; set; }
+        public decimal ValorFrete { get; set; }
+
     }
 }
