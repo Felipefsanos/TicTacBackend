@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data.Orcamentos;
@@ -25,9 +26,9 @@ namespace TicTacBackend.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<OrcamentoData> ObterOrcamentos()
+        public IEnumerable<OrcamentoData> ObterOrcamentos(DateTime? dataInicio, DateTime? dataFim)
         {
-            return orcamentoAppService.ObterOrcamentos();
+            return orcamentoAppService.ObterOrcamentos(dataInicio, dataFim);
         }
 
         [HttpGet("{id}")]

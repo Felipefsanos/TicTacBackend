@@ -14,6 +14,7 @@ namespace TicTacBackend.Application.AppServices.Interfaces
         void CriarOrcamento(NovoOrcamentoCommand novoOrcamentoCommand);
         void AlterarOrcamento(AlteraOrcamentoCommand alterarOrcamentoCommand);
         IEnumerable<OrcamentoData> ObterOrcamentos();
+        IEnumerable<OrcamentoData> ObterOrcamentos(DateTime? dataInicio, DateTime? dataFim);
         OrcamentoData ObterOrcamento(long id);
         void RemoverOrcamento(long id);
     }

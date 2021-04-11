@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using TicTacBackend.Application.AppServices.Interfaces;
 using TicTacBackend.Application.Data.Orcamentos;
@@ -60,6 +61,18 @@ namespace TicTacBackend.Application.AppServices
             var orcamentos = orcamentoRepository.ObterTodos("Local", "Cliente", "Cliente.Contatos");
 
             return mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoData>>(orcamentos);
+        }
+
+        public IEnumerable<OrcamentoData> ObterOrcamentos(DateTime? dataInicio, DateTime? dataFim)
+        {
+            if (!dataInicio.HasValue || !dataFim.HasValue)
+                ObterOrcamentos();
+
+            ValidacaoLogica.IsTrue<ValidacaoException>(dataInicio > dataFim, "Data início não pode ser maior que a data fim.");
+
+            var orcamentos = orcamentoRepository.Obter(o => o.DataEvento >= dataInicio && o.DataEvento <= dataFim, "Cliente");
+
+            return mapper.Map<IEnumerable<OrcamentoData>>(orcamentos);
         }
 
         public void RemoverOrcamento(long id)
