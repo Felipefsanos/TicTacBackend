@@ -51,6 +51,18 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
 
             AtribuirValores(novoOrcamentoCommand);
 
+            Produto = new List<Produto>();
+            foreach (var item in novoOrcamentoCommand.Produtos)
+            {
+                Produto.Add( new Produto(item,null));
+            }
+
+            Servico = new List<Servico>();
+            foreach (var item in novoOrcamentoCommand.Servicos)
+            {
+                Servico.Add(new Servico(item));
+            }
+
             Local = new Local(novoOrcamentoCommand.Endereco);
         }
 
@@ -61,6 +73,8 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
             ValidacaoLogica.IsTrue<ValidacaoException>(alterarOrcamentoCommand.Local is null, "Local do evento é obrigatório.");
 
             AtribuirValores(alterarOrcamentoCommand);
+
+          
 
             Local.Alterar(alterarOrcamentoCommand.Local);
         }
@@ -74,6 +88,9 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
             BuffetPrincipal = orcamento.BuffetPrincipal;
             Observacao = orcamento.Observacao;
             Valor = orcamento.Valor;
+            ValorFrete = orcamento.ValorFrete;
+
+          
         }
 
         private void ValidarParametrosObrigatorios(OrcamentoCommand orcamento)
