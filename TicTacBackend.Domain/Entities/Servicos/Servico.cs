@@ -7,6 +7,7 @@ using TicTacBackend.Domain.Commands.Servicos;
 using TicTacBackend.Domain.Commands.Servicos.Atualiza;
 using TicTacBackend.Domain.Commands.Servicos.Novo;
 using TicTacBackend.Domain.Entities.Base;
+using TicTacBackend.Domain.Entities.Orcamentos;
 using TicTacBackend.Infra.Helpers.Exceptions;
 using TicTacBackend.Infra.Helpers.Validation;
 
@@ -19,6 +20,7 @@ namespace TicTacBackend.Domain.Entities.Servicos
         public TiposAlimentacao? TipoAlimentacao { get; set; }
         public TipoCarrinhos TipoCarrinho { get; set; }
         public TipoServicos TipoServico { get; set; }
+        public List<Orcamento> Orcamento { get; set; }
 
         public enum TipoServicos
         {

@@ -49,7 +49,7 @@ namespace TicTacBackend.Application.AppServices
 
         public OrcamentoData ObterOrcamento(long id)
         {
-            var orcamento = orcamentoRepository.ObterUm(c => c.Id == id, "Local");
+            var orcamento = orcamentoRepository.ObterUm(c => c.Id == id, "Local", "Cliente", "Cliente.Contatos", "Produto", "Servico");
 
             ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(orcamento is null, "Orçamento não encontrado.");
 
@@ -58,7 +58,7 @@ namespace TicTacBackend.Application.AppServices
 
         public IEnumerable<OrcamentoData> ObterOrcamentos()
         {
-            var orcamentos = orcamentoRepository.ObterTodos("Local", "Cliente", "Cliente.Contatos");
+            var orcamentos = orcamentoRepository.ObterTodos("Local", "Cliente", "Cliente.Contatos", "Produto", "Servico");
 
             return mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoData>>(orcamentos);
         }
@@ -66,7 +66,7 @@ namespace TicTacBackend.Application.AppServices
         public IEnumerable<OrcamentoData> ObterOrcamentos(DateTime? dataInicio, DateTime? dataFim)
         {
             if (!dataInicio.HasValue || !dataFim.HasValue)
-                ObterOrcamentos();
+                return ObterOrcamentos();
 
             ValidacaoLogica.IsTrue<ValidacaoException>(dataInicio > dataFim, "Data início não pode ser maior que a data fim.");
 

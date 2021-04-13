@@ -4,6 +4,7 @@ using TicTacBackend.Domain.Commands.Produto;
 using TicTacBackend.Domain.Commands.Produto.Atualiza;
 using TicTacBackend.Domain.Commands.Produto.Novo;
 using TicTacBackend.Domain.Entities.Base;
+using TicTacBackend.Domain.Entities.Orcamentos;
 using TicTacBackend.Infra.Helpers.Exceptions;
 using TicTacBackend.Infra.Helpers.Validation;
 
@@ -15,6 +16,7 @@ namespace TicTacBackend.Domain.Entities.Produtos
         public string Nome { get; set; }
         public decimal Valor { get; set; }
         public List<Componente> Componentes { get; set; }
+        public List<Orcamento> Orcamento { get; set; }
         public bool Disponivel { get; set; }
 
         public Produto()

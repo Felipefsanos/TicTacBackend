@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using TicTacBackend.Application.Data.Clientes;
+using TicTacBackend.Application.Data.Produto;
+using TicTacBackend.Application.Data.Servicos;
 using static TicTacBackend.Domain.Entities.Orcamentos.Orcamento;
 
 namespace TicTacBackend.Application.Data.Orcamentos
@@ -16,5 +19,7 @@ namespace TicTacBackend.Application.Data.Orcamentos
         public string Observacao { get; set; }
         public decimal Valor { get; set; }
         public ClienteData Cliente { get; set; }
+        public List<ProdutoData> Produto { get; set; }
+        public List<ServicoData> Servico { get; set; }
     }
 }
