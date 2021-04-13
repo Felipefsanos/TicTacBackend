@@ -77,7 +77,7 @@ namespace TicTacBackend.Application.AppServices
 
         public void RemoverOrcamento(long id)
         {
-            var orcamento = orcamentoRepository.ObterUm(o => o.Id == id, "Local", "Cliente", "Cliente.Contatos");
+            var orcamento = orcamentoRepository.ObterUm(o => o.Id == id, "Local", "Cliente", "Cliente.Contatos", "Produto", "Servico");
 
             ValidacaoLogica.IsTrue<RecursoNaoEncontradoException>(orcamento is null, "Orçamento não encontrado.");
 
