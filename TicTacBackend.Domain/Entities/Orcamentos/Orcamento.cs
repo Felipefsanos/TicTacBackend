@@ -99,8 +99,6 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
             ValidacaoLogica.IsTrue<ValidacaoException>(orcamento.TipoEvento == TiposEvento.Indefinido, "Tipo do evento é obrigatório.");
             ValidacaoLogica.IsTrue<ValidacaoException>(orcamento.QuantidadeAdultos < 0, "Quantidade de adultos não pode ser menor que 0");
             ValidacaoLogica.IsTrue<ValidacaoException>(orcamento.QuantidadeCriancas < 0, "Quantidade de crianças não pode ser menor que 0");
-            ValidacaoLogica.IsTrue<ValidacaoException>(orcamento.QuantidadeCriancas < 0, "Quantidade de crianças não pode ser menor que 0");
-            ValidacaoLogica.IsTrue<ValidacaoException>(orcamento.Valor <= 0, "Valor do orçamento não pode ser menor que R$: 0");
         }
     }
 }

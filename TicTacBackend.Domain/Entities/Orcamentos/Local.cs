@@ -67,7 +67,6 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
             ValidacaoLogica.IsTrue<ValidacaoException>(local.Cidade.IsNullOrWhiteSpace(), "Cidade é uma informação obrigatória.");
             ValidacaoLogica.IsTrue<ValidacaoException>(local.Bairro.IsNullOrWhiteSpace(), "Bairro é uma informação obrigatória.");
             ValidacaoLogica.IsTrue<ValidacaoException>(local.CEP <= 0, "CEP é uma informação obrigatória.");
-            ValidacaoLogica.IsTrue<ValidacaoException>(local.TamanhoLocal <= 0, "Tamanho do local não pode ser menor ou igual a 0.");
         }
     }
 }
