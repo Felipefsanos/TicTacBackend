@@ -45,7 +45,7 @@ namespace TicTacBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public void CriarCliente(long id, AtualizaClienteCommand atualizaClienteCommand)
+        public void AtualizarCliente(long id, AtualizaClienteCommand atualizaClienteCommand)
         {
             atualizaClienteCommand.Id = id;
             clienteAppService.AtualizarCliente(atualizaClienteCommand);
