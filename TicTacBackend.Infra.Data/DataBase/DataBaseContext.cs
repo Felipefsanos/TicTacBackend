@@ -22,9 +22,8 @@ namespace TicTacBackend.Infra.Data.DataBase
         public virtual DbSet<Componente> Componentes { get; set; }
         public virtual DbSet<Prestador> Prestadores { get; set; }
         public virtual DbSet<Servico> Servicos { get; set; }
-
-
-
+        public virtual DbSet<ServicoOrcamentoDescricao> ServicoOrcamentoDescricao { get; set; }
+        
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
         {
             

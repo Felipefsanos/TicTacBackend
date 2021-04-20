@@ -14,6 +14,7 @@ namespace TicTacBackend.Application.Data.Clientes
         public string Observacao { get; set; }
         public EnderecoData Endereco { get; set; }
         public CanalCaptacaoData CanalCaptacao { get; set; }
+        public long CanalCaptacaoId { get; set; }
         public List<ContatoData> Contatos { get; set; }
     }
 }

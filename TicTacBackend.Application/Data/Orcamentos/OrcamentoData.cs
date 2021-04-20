@@ -18,6 +18,7 @@ namespace TicTacBackend.Application.Data.Orcamentos
         public bool BuffetPrincipal { get; set; }
         public string Observacao { get; set; }
         public decimal Valor { get; set; }
+        public decimal ValorFrete { get; set; }
         public ClienteData Cliente { get; set; }
         public List<ProdutoData> Produto { get; set; }
         public List<ServicoData> Servico { get; set; }

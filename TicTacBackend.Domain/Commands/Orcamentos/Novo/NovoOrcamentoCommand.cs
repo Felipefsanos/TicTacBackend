@@ -13,9 +13,9 @@ namespace TicTacBackend.Domain.Commands.Orcamentos.Novo
     public class NovoOrcamentoCommand : OrcamentoCommand
     {
         public NovoClienteOrcamentoModel Cliente { get; set; }
-        public NovoLocalCommand Endereco { get; set; }
-        public List<NovoProdutoCommand> Produtos { get; set; }
-        public List<NovoServicoCommand> Servicos { get; set; }
+        public NovoLocalCommand Local { get; set; }
+        public List<NovoProdutoCommand> Produto { get; set; }
+        public List<NovoServicoCommand> Servico { get; set; }
 
     }
 }

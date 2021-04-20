@@ -27,6 +27,7 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
         public Cliente Cliente { get; set; }
         public List<Produto> Produto { get; set; }
         public List<Servico> Servico { get; set; }
+        public List<ServicoOrcamentoDescricao> servicoOrcamentoDescricao { get; set; }
 
         public enum TiposEvento
         {
@@ -47,23 +48,25 @@ namespace TicTacBackend.Domain.Entities.Orcamentos
         {
             ValidarParametrosObrigatorios(novoOrcamentoCommand);
 
-            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.Endereco is null, "Local do evento é obrigatório.");
+            ValidacaoLogica.IsTrue<ValidacaoException>(novoOrcamentoCommand.Local is null, "Local do evento é obrigatório.");
 
             AtribuirValores(novoOrcamentoCommand);
 
             Produto = new List<Produto>();
-            foreach (var item in novoOrcamentoCommand.Produtos)
+            foreach (var item in novoOrcamentoCommand.Produto)
             {
                 Produto.Add( new Produto(item,null));
             }
 
             Servico = new List<Servico>();
-            foreach (var item in novoOrcamentoCommand.Servicos)
+
+            foreach (var item in novoOrcamentoCommand.Servico)
             {
                 Servico.Add(new Servico(item));
+
             }
 
-            Local = new Local(novoOrcamentoCommand.Endereco);
+            Local = new Local(novoOrcamentoCommand.Local);
         }
 
         public void Alterar(AlteraOrcamentoCommand alterarOrcamentoCommand)

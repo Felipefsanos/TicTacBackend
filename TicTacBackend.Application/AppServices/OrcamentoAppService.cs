@@ -21,7 +21,11 @@ namespace TicTacBackend.Application.AppServices
         private readonly IOrcamentoService orcamentoService;
         private readonly IOrcamentoRepository orcamentoRepository;
 
-        public OrcamentoAppService(IUnitOfWork unitOfWork, IOrcamentoService orcamentoService, IOrcamentoRepository orcamentoRepository, IMapper mapper)
+
+        public OrcamentoAppService(IUnitOfWork unitOfWork,
+            IOrcamentoService orcamentoService,
+            IOrcamentoRepository orcamentoRepository,
+            IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.orcamentoService = orcamentoService;
@@ -45,6 +49,9 @@ namespace TicTacBackend.Application.AppServices
             orcamentoService.CriarOrcamento(novoOrcamentoCommand);
 
             unitOfWork.SaveChanges();
+
+
+
         }
 
         public OrcamentoData ObterOrcamento(long id)
@@ -70,7 +77,7 @@ namespace TicTacBackend.Application.AppServices
 
             ValidacaoLogica.IsTrue<ValidacaoException>(dataInicio > dataFim, "Data início não pode ser maior que a data fim.");
 
-            var orcamentos = orcamentoRepository.Obter(o => o.DataEvento >= dataInicio && o.DataEvento <= dataFim, "Cliente");
+            var orcamentos = orcamentoRepository.Obter(o => o.DataEvento >= dataInicio && o.DataEvento <= dataFim, "Cliente", "Local", "Cliente", "Cliente.Contatos", "Produto", "Servico");
 
             return mapper.Map<IEnumerable<OrcamentoData>>(orcamentos);
         }
