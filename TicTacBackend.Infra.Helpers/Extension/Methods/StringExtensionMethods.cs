@@ -9,6 +9,11 @@ namespace TicTacBackend.Infra.Helpers.Extension.Methods
 {
     public static class StringExtensionMethods
     {
+        public static string FirstName(this string str)
+        {
+            return str.Split(' ')[0];
+        }
+
         public static bool IsNullOrEmpty(this string str)
         {
             return string.IsNullOrEmpty(str);

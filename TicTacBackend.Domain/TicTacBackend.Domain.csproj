@@ -12,4 +12,19 @@
     <ProjectReference Include="..\TicTacBackend.Infra.Helpers\TicTacBackend.Infra.Helpers.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="EmailsResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EmailsResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="EmailsResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmailsResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

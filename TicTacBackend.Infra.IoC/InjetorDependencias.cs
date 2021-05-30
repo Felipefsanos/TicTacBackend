@@ -17,8 +17,10 @@ using TicTacBackend.Domain.Repositories.Produto;
 using TicTacBackend.Domain.Repositories.Servicos;
 using TicTacBackend.Domain.Services.Auth;
 using TicTacBackend.Domain.Services.Clientes;
+using TicTacBackend.Domain.Services.Email;
 using TicTacBackend.Domain.Services.Interfaces.Auth;
 using TicTacBackend.Domain.Services.Interfaces.Clientes;
+using TicTacBackend.Domain.Services.Interfaces.Email;
 using TicTacBackend.Domain.Services.Interfaces.Orcamentos;
 using TicTacBackend.Domain.Services.Interfaces.Prestadores;
 using TicTacBackend.Domain.Services.Interfaces.Produtos;
@@ -80,6 +82,7 @@ namespace TicTacBackend.Infra.IoC
             services.AddScoped<IComponenteService, ComponenteService>();
             services.AddScoped<IPrestadorService, PrestadorService>();
             services.AddScoped<IServicoService, ServicoService>();
+            services.AddScoped<IEmailService, EmailService>();
         }
 
         private static void ConfigurarAppServices(IServiceCollection services)
